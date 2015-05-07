@@ -1,0 +1,562 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2BE1B1FC1AFA68F000EA8CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B1FB1AFA68F000EA8CE3 /* main.m */; };
+		2BE1B1FF1AFA68F000EA8CE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B1FE1AFA68F000EA8CE3 /* AppDelegate.m */; };
+		2BE1B2021AFA68F000EA8CE3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2011AFA68F000EA8CE3 /* ViewController.m */; };
+		2BE1B2051AFA68F000EA8CE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE1B2031AFA68F000EA8CE3 /* Main.storyboard */; };
+		2BE1B2071AFA68F000EA8CE3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BE1B2061AFA68F000EA8CE3 /* Images.xcassets */; };
+		2BE1B20A1AFA68F000EA8CE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BE1B2081AFA68F000EA8CE3 /* LaunchScreen.xib */; };
+		2BE1B2161AFA68F000EA8CE3 /* NetworkTestingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2151AFA68F000EA8CE3 /* NetworkTestingTests.m */; };
+		2BE1B2461AFA696E00EA8CE3 /* MH6ShotsProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2211AFA696E00EA8CE3 /* MH6ShotsProtocol.m */; };
+		2BE1B2471AFA696E00EA8CE3 /* MH6ShotsSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2231AFA696E00EA8CE3 /* MH6ShotsSchedule.m */; };
+		2BE1B2481AFA696E00EA8CE3 /* MH6ShotsScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2251AFA696E00EA8CE3 /* MH6ShotsScheduler.m */; };
+		2BE1B2491AFA696E00EA8CE3 /* MHComputation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2271AFA696E00EA8CE3 /* MHComputation.m */; };
+		2BE1B24A1AFA696E00EA8CE3 /* MHConnectionBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2291AFA696E00EA8CE3 /* MHConnectionBuffer.m */; };
+		2BE1B24B1AFA696E00EA8CE3 /* MHConnectionsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B22B1AFA696E00EA8CE3 /* MHConnectionsHandler.m */; };
+		2BE1B24C1AFA696E00EA8CE3 /* MHDiagnostics.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B22D1AFA696E00EA8CE3 /* MHDiagnostics.m */; };
+		2BE1B24D1AFA696E00EA8CE3 /* MHFloodingProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B22F1AFA696E00EA8CE3 /* MHFloodingProtocol.m */; };
+		2BE1B24E1AFA696E00EA8CE3 /* MHLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2311AFA696E00EA8CE3 /* MHLocationManager.m */; };
+		2BE1B24F1AFA696E00EA8CE3 /* MHMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2331AFA696E00EA8CE3 /* MHMessage.m */; };
+		2BE1B2501AFA696E00EA8CE3 /* MHMulticastController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2351AFA696E00EA8CE3 /* MHMulticastController.m */; };
+		2BE1B2511AFA696E00EA8CE3 /* MHMulticastRoutingProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2371AFA696E00EA8CE3 /* MHMulticastRoutingProtocol.m */; };
+		2BE1B2521AFA696E00EA8CE3 /* MHMulticastSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2391AFA696E00EA8CE3 /* MHMulticastSocket.m */; };
+		2BE1B2531AFA696E00EA8CE3 /* MHMultipeerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B23B1AFA696E00EA8CE3 /* MHMultipeerWrapper.m */; };
+		2BE1B2541AFA696E00EA8CE3 /* MHPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B23D1AFA696E00EA8CE3 /* MHPacket.m */; };
+		2BE1B2551AFA696E00EA8CE3 /* MHPeer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B23F1AFA696E00EA8CE3 /* MHPeer.m */; };
+		2BE1B2561AFA696E00EA8CE3 /* MHUnicastController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2411AFA696E00EA8CE3 /* MHUnicastController.m */; };
+		2BE1B2571AFA696E00EA8CE3 /* MHUnicastRoutingProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2431AFA696E00EA8CE3 /* MHUnicastRoutingProtocol.m */; };
+		2BE1B2581AFA696E00EA8CE3 /* MHUnicastSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2451AFA696E00EA8CE3 /* MHUnicastSocket.m */; };
+		2BE1B25A1AFA69CC00EA8CE3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE1B2591AFA69CC00EA8CE3 /* CoreLocation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2BE1B2101AFA68F000EA8CE3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2BE1B1EE1AFA68F000EA8CE3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2BE1B1F51AFA68F000EA8CE3;
+			remoteInfo = NetworkTesting;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2BE1B1F61AFA68F000EA8CE3 /* NetworkTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BE1B1FA1AFA68F000EA8CE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BE1B1FB1AFA68F000EA8CE3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2BE1B1FD1AFA68F000EA8CE3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2BE1B1FE1AFA68F000EA8CE3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2BE1B2001AFA68F000EA8CE3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2BE1B2011AFA68F000EA8CE3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2BE1B2041AFA68F000EA8CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2BE1B2061AFA68F000EA8CE3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2BE1B2091AFA68F000EA8CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		2BE1B20F1AFA68F000EA8CE3 /* NetworkTestingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkTestingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BE1B2141AFA68F000EA8CE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BE1B2151AFA68F000EA8CE3 /* NetworkTestingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkTestingTests.m; sourceTree = "<group>"; };
+		2BE1B2201AFA696E00EA8CE3 /* MH6ShotsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MH6ShotsProtocol.h; path = "../multihop-lib-ios/Multihop/MH6ShotsProtocol.h"; sourceTree = "<group>"; };
+		2BE1B2211AFA696E00EA8CE3 /* MH6ShotsProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MH6ShotsProtocol.m; path = "../multihop-lib-ios/Multihop/MH6ShotsProtocol.m"; sourceTree = "<group>"; };
+		2BE1B2221AFA696E00EA8CE3 /* MH6ShotsSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MH6ShotsSchedule.h; path = "../multihop-lib-ios/Multihop/MH6ShotsSchedule.h"; sourceTree = "<group>"; };
+		2BE1B2231AFA696E00EA8CE3 /* MH6ShotsSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MH6ShotsSchedule.m; path = "../multihop-lib-ios/Multihop/MH6ShotsSchedule.m"; sourceTree = "<group>"; };
+		2BE1B2241AFA696E00EA8CE3 /* MH6ShotsScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MH6ShotsScheduler.h; path = "../multihop-lib-ios/Multihop/MH6ShotsScheduler.h"; sourceTree = "<group>"; };
+		2BE1B2251AFA696E00EA8CE3 /* MH6ShotsScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MH6ShotsScheduler.m; path = "../multihop-lib-ios/Multihop/MH6ShotsScheduler.m"; sourceTree = "<group>"; };
+		2BE1B2261AFA696E00EA8CE3 /* MHComputation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHComputation.h; path = "../multihop-lib-ios/Multihop/MHComputation.h"; sourceTree = "<group>"; };
+		2BE1B2271AFA696E00EA8CE3 /* MHComputation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHComputation.m; path = "../multihop-lib-ios/Multihop/MHComputation.m"; sourceTree = "<group>"; };
+		2BE1B2281AFA696E00EA8CE3 /* MHConnectionBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHConnectionBuffer.h; path = "../multihop-lib-ios/Multihop/MHConnectionBuffer.h"; sourceTree = "<group>"; };
+		2BE1B2291AFA696E00EA8CE3 /* MHConnectionBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHConnectionBuffer.m; path = "../multihop-lib-ios/Multihop/MHConnectionBuffer.m"; sourceTree = "<group>"; };
+		2BE1B22A1AFA696E00EA8CE3 /* MHConnectionsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHConnectionsHandler.h; path = "../multihop-lib-ios/Multihop/MHConnectionsHandler.h"; sourceTree = "<group>"; };
+		2BE1B22B1AFA696E00EA8CE3 /* MHConnectionsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHConnectionsHandler.m; path = "../multihop-lib-ios/Multihop/MHConnectionsHandler.m"; sourceTree = "<group>"; };
+		2BE1B22C1AFA696E00EA8CE3 /* MHDiagnostics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHDiagnostics.h; path = "../multihop-lib-ios/Multihop/MHDiagnostics.h"; sourceTree = "<group>"; };
+		2BE1B22D1AFA696E00EA8CE3 /* MHDiagnostics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHDiagnostics.m; path = "../multihop-lib-ios/Multihop/MHDiagnostics.m"; sourceTree = "<group>"; };
+		2BE1B22E1AFA696E00EA8CE3 /* MHFloodingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHFloodingProtocol.h; path = "../multihop-lib-ios/Multihop/MHFloodingProtocol.h"; sourceTree = "<group>"; };
+		2BE1B22F1AFA696E00EA8CE3 /* MHFloodingProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHFloodingProtocol.m; path = "../multihop-lib-ios/Multihop/MHFloodingProtocol.m"; sourceTree = "<group>"; };
+		2BE1B2301AFA696E00EA8CE3 /* MHLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHLocationManager.h; path = "../multihop-lib-ios/Multihop/MHLocationManager.h"; sourceTree = "<group>"; };
+		2BE1B2311AFA696E00EA8CE3 /* MHLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHLocationManager.m; path = "../multihop-lib-ios/Multihop/MHLocationManager.m"; sourceTree = "<group>"; };
+		2BE1B2321AFA696E00EA8CE3 /* MHMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHMessage.h; path = "../multihop-lib-ios/Multihop/MHMessage.h"; sourceTree = "<group>"; };
+		2BE1B2331AFA696E00EA8CE3 /* MHMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHMessage.m; path = "../multihop-lib-ios/Multihop/MHMessage.m"; sourceTree = "<group>"; };
+		2BE1B2341AFA696E00EA8CE3 /* MHMulticastController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHMulticastController.h; path = "../multihop-lib-ios/Multihop/MHMulticastController.h"; sourceTree = "<group>"; };
+		2BE1B2351AFA696E00EA8CE3 /* MHMulticastController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHMulticastController.m; path = "../multihop-lib-ios/Multihop/MHMulticastController.m"; sourceTree = "<group>"; };
+		2BE1B2361AFA696E00EA8CE3 /* MHMulticastRoutingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHMulticastRoutingProtocol.h; path = "../multihop-lib-ios/Multihop/MHMulticastRoutingProtocol.h"; sourceTree = "<group>"; };
+		2BE1B2371AFA696E00EA8CE3 /* MHMulticastRoutingProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHMulticastRoutingProtocol.m; path = "../multihop-lib-ios/Multihop/MHMulticastRoutingProtocol.m"; sourceTree = "<group>"; };
+		2BE1B2381AFA696E00EA8CE3 /* MHMulticastSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHMulticastSocket.h; path = "../multihop-lib-ios/Multihop/MHMulticastSocket.h"; sourceTree = "<group>"; };
+		2BE1B2391AFA696E00EA8CE3 /* MHMulticastSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHMulticastSocket.m; path = "../multihop-lib-ios/Multihop/MHMulticastSocket.m"; sourceTree = "<group>"; };
+		2BE1B23A1AFA696E00EA8CE3 /* MHMultipeerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHMultipeerWrapper.h; path = "../multihop-lib-ios/Multihop/MHMultipeerWrapper.h"; sourceTree = "<group>"; };
+		2BE1B23B1AFA696E00EA8CE3 /* MHMultipeerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHMultipeerWrapper.m; path = "../multihop-lib-ios/Multihop/MHMultipeerWrapper.m"; sourceTree = "<group>"; };
+		2BE1B23C1AFA696E00EA8CE3 /* MHPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHPacket.h; path = "../multihop-lib-ios/Multihop/MHPacket.h"; sourceTree = "<group>"; };
+		2BE1B23D1AFA696E00EA8CE3 /* MHPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHPacket.m; path = "../multihop-lib-ios/Multihop/MHPacket.m"; sourceTree = "<group>"; };
+		2BE1B23E1AFA696E00EA8CE3 /* MHPeer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHPeer.h; path = "../multihop-lib-ios/Multihop/MHPeer.h"; sourceTree = "<group>"; };
+		2BE1B23F1AFA696E00EA8CE3 /* MHPeer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHPeer.m; path = "../multihop-lib-ios/Multihop/MHPeer.m"; sourceTree = "<group>"; };
+		2BE1B2401AFA696E00EA8CE3 /* MHUnicastController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHUnicastController.h; path = "../multihop-lib-ios/Multihop/MHUnicastController.h"; sourceTree = "<group>"; };
+		2BE1B2411AFA696E00EA8CE3 /* MHUnicastController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHUnicastController.m; path = "../multihop-lib-ios/Multihop/MHUnicastController.m"; sourceTree = "<group>"; };
+		2BE1B2421AFA696E00EA8CE3 /* MHUnicastRoutingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHUnicastRoutingProtocol.h; path = "../multihop-lib-ios/Multihop/MHUnicastRoutingProtocol.h"; sourceTree = "<group>"; };
+		2BE1B2431AFA696E00EA8CE3 /* MHUnicastRoutingProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHUnicastRoutingProtocol.m; path = "../multihop-lib-ios/Multihop/MHUnicastRoutingProtocol.m"; sourceTree = "<group>"; };
+		2BE1B2441AFA696E00EA8CE3 /* MHUnicastSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHUnicastSocket.h; path = "../multihop-lib-ios/Multihop/MHUnicastSocket.h"; sourceTree = "<group>"; };
+		2BE1B2451AFA696E00EA8CE3 /* MHUnicastSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHUnicastSocket.m; path = "../multihop-lib-ios/Multihop/MHUnicastSocket.m"; sourceTree = "<group>"; };
+		2BE1B2591AFA69CC00EA8CE3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2BE1B1F31AFA68F000EA8CE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BE1B25A1AFA69CC00EA8CE3 /* CoreLocation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BE1B20C1AFA68F000EA8CE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2BE1B1ED1AFA68F000EA8CE3 = {
+			isa = PBXGroup;
+			children = (
+				2BE1B2591AFA69CC00EA8CE3 /* CoreLocation.framework */,
+				2BE1B21F1AFA693B00EA8CE3 /* Multihop */,
+				2BE1B1F81AFA68F000EA8CE3 /* NetworkTesting */,
+				2BE1B2121AFA68F000EA8CE3 /* NetworkTestingTests */,
+				2BE1B1F71AFA68F000EA8CE3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2BE1B1F71AFA68F000EA8CE3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2BE1B1F61AFA68F000EA8CE3 /* NetworkTesting.app */,
+				2BE1B20F1AFA68F000EA8CE3 /* NetworkTestingTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2BE1B1F81AFA68F000EA8CE3 /* NetworkTesting */ = {
+			isa = PBXGroup;
+			children = (
+				2BE1B1FD1AFA68F000EA8CE3 /* AppDelegate.h */,
+				2BE1B1FE1AFA68F000EA8CE3 /* AppDelegate.m */,
+				2BE1B2001AFA68F000EA8CE3 /* ViewController.h */,
+				2BE1B2011AFA68F000EA8CE3 /* ViewController.m */,
+				2BE1B2031AFA68F000EA8CE3 /* Main.storyboard */,
+				2BE1B2061AFA68F000EA8CE3 /* Images.xcassets */,
+				2BE1B2081AFA68F000EA8CE3 /* LaunchScreen.xib */,
+				2BE1B1F91AFA68F000EA8CE3 /* Supporting Files */,
+			);
+			path = NetworkTesting;
+			sourceTree = "<group>";
+		};
+		2BE1B1F91AFA68F000EA8CE3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2BE1B1FA1AFA68F000EA8CE3 /* Info.plist */,
+				2BE1B1FB1AFA68F000EA8CE3 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2BE1B2121AFA68F000EA8CE3 /* NetworkTestingTests */ = {
+			isa = PBXGroup;
+			children = (
+				2BE1B2151AFA68F000EA8CE3 /* NetworkTestingTests.m */,
+				2BE1B2131AFA68F000EA8CE3 /* Supporting Files */,
+			);
+			path = NetworkTestingTests;
+			sourceTree = "<group>";
+		};
+		2BE1B2131AFA68F000EA8CE3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2BE1B2141AFA68F000EA8CE3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2BE1B21F1AFA693B00EA8CE3 /* Multihop */ = {
+			isa = PBXGroup;
+			children = (
+				2BE1B2201AFA696E00EA8CE3 /* MH6ShotsProtocol.h */,
+				2BE1B2211AFA696E00EA8CE3 /* MH6ShotsProtocol.m */,
+				2BE1B2221AFA696E00EA8CE3 /* MH6ShotsSchedule.h */,
+				2BE1B2231AFA696E00EA8CE3 /* MH6ShotsSchedule.m */,
+				2BE1B2241AFA696E00EA8CE3 /* MH6ShotsScheduler.h */,
+				2BE1B2251AFA696E00EA8CE3 /* MH6ShotsScheduler.m */,
+				2BE1B2261AFA696E00EA8CE3 /* MHComputation.h */,
+				2BE1B2271AFA696E00EA8CE3 /* MHComputation.m */,
+				2BE1B2281AFA696E00EA8CE3 /* MHConnectionBuffer.h */,
+				2BE1B2291AFA696E00EA8CE3 /* MHConnectionBuffer.m */,
+				2BE1B22A1AFA696E00EA8CE3 /* MHConnectionsHandler.h */,
+				2BE1B22B1AFA696E00EA8CE3 /* MHConnectionsHandler.m */,
+				2BE1B22C1AFA696E00EA8CE3 /* MHDiagnostics.h */,
+				2BE1B22D1AFA696E00EA8CE3 /* MHDiagnostics.m */,
+				2BE1B22E1AFA696E00EA8CE3 /* MHFloodingProtocol.h */,
+				2BE1B22F1AFA696E00EA8CE3 /* MHFloodingProtocol.m */,
+				2BE1B2301AFA696E00EA8CE3 /* MHLocationManager.h */,
+				2BE1B2311AFA696E00EA8CE3 /* MHLocationManager.m */,
+				2BE1B2321AFA696E00EA8CE3 /* MHMessage.h */,
+				2BE1B2331AFA696E00EA8CE3 /* MHMessage.m */,
+				2BE1B2341AFA696E00EA8CE3 /* MHMulticastController.h */,
+				2BE1B2351AFA696E00EA8CE3 /* MHMulticastController.m */,
+				2BE1B2361AFA696E00EA8CE3 /* MHMulticastRoutingProtocol.h */,
+				2BE1B2371AFA696E00EA8CE3 /* MHMulticastRoutingProtocol.m */,
+				2BE1B2381AFA696E00EA8CE3 /* MHMulticastSocket.h */,
+				2BE1B2391AFA696E00EA8CE3 /* MHMulticastSocket.m */,
+				2BE1B23A1AFA696E00EA8CE3 /* MHMultipeerWrapper.h */,
+				2BE1B23B1AFA696E00EA8CE3 /* MHMultipeerWrapper.m */,
+				2BE1B23C1AFA696E00EA8CE3 /* MHPacket.h */,
+				2BE1B23D1AFA696E00EA8CE3 /* MHPacket.m */,
+				2BE1B23E1AFA696E00EA8CE3 /* MHPeer.h */,
+				2BE1B23F1AFA696E00EA8CE3 /* MHPeer.m */,
+				2BE1B2401AFA696E00EA8CE3 /* MHUnicastController.h */,
+				2BE1B2411AFA696E00EA8CE3 /* MHUnicastController.m */,
+				2BE1B2421AFA696E00EA8CE3 /* MHUnicastRoutingProtocol.h */,
+				2BE1B2431AFA696E00EA8CE3 /* MHUnicastRoutingProtocol.m */,
+				2BE1B2441AFA696E00EA8CE3 /* MHUnicastSocket.h */,
+				2BE1B2451AFA696E00EA8CE3 /* MHUnicastSocket.m */,
+			);
+			name = Multihop;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2BE1B1F51AFA68F000EA8CE3 /* NetworkTesting */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BE1B2191AFA68F000EA8CE3 /* Build configuration list for PBXNativeTarget "NetworkTesting" */;
+			buildPhases = (
+				2BE1B1F21AFA68F000EA8CE3 /* Sources */,
+				2BE1B1F31AFA68F000EA8CE3 /* Frameworks */,
+				2BE1B1F41AFA68F000EA8CE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NetworkTesting;
+			productName = NetworkTesting;
+			productReference = 2BE1B1F61AFA68F000EA8CE3 /* NetworkTesting.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2BE1B20E1AFA68F000EA8CE3 /* NetworkTestingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BE1B21C1AFA68F000EA8CE3 /* Build configuration list for PBXNativeTarget "NetworkTestingTests" */;
+			buildPhases = (
+				2BE1B20B1AFA68F000EA8CE3 /* Sources */,
+				2BE1B20C1AFA68F000EA8CE3 /* Frameworks */,
+				2BE1B20D1AFA68F000EA8CE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2BE1B2111AFA68F000EA8CE3 /* PBXTargetDependency */,
+			);
+			name = NetworkTestingTests;
+			productName = NetworkTestingTests;
+			productReference = 2BE1B20F1AFA68F000EA8CE3 /* NetworkTestingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2BE1B1EE1AFA68F000EA8CE3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = quarta;
+				TargetAttributes = {
+					2BE1B1F51AFA68F000EA8CE3 = {
+						CreatedOnToolsVersion = 6.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					2BE1B20E1AFA68F000EA8CE3 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 2BE1B1F51AFA68F000EA8CE3;
+					};
+				};
+			};
+			buildConfigurationList = 2BE1B1F11AFA68F000EA8CE3 /* Build configuration list for PBXProject "NetworkTesting" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2BE1B1ED1AFA68F000EA8CE3;
+			productRefGroup = 2BE1B1F71AFA68F000EA8CE3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2BE1B1F51AFA68F000EA8CE3 /* NetworkTesting */,
+				2BE1B20E1AFA68F000EA8CE3 /* NetworkTestingTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2BE1B1F41AFA68F000EA8CE3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BE1B2051AFA68F000EA8CE3 /* Main.storyboard in Resources */,
+				2BE1B20A1AFA68F000EA8CE3 /* LaunchScreen.xib in Resources */,
+				2BE1B2071AFA68F000EA8CE3 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BE1B20D1AFA68F000EA8CE3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2BE1B1F21AFA68F000EA8CE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BE1B2541AFA696E00EA8CE3 /* MHPacket.m in Sources */,
+				2BE1B2571AFA696E00EA8CE3 /* MHUnicastRoutingProtocol.m in Sources */,
+				2BE1B2021AFA68F000EA8CE3 /* ViewController.m in Sources */,
+				2BE1B2501AFA696E00EA8CE3 /* MHMulticastController.m in Sources */,
+				2BE1B2531AFA696E00EA8CE3 /* MHMultipeerWrapper.m in Sources */,
+				2BE1B2521AFA696E00EA8CE3 /* MHMulticastSocket.m in Sources */,
+				2BE1B2511AFA696E00EA8CE3 /* MHMulticastRoutingProtocol.m in Sources */,
+				2BE1B24C1AFA696E00EA8CE3 /* MHDiagnostics.m in Sources */,
+				2BE1B1FF1AFA68F000EA8CE3 /* AppDelegate.m in Sources */,
+				2BE1B2561AFA696E00EA8CE3 /* MHUnicastController.m in Sources */,
+				2BE1B2491AFA696E00EA8CE3 /* MHComputation.m in Sources */,
+				2BE1B2551AFA696E00EA8CE3 /* MHPeer.m in Sources */,
+				2BE1B1FC1AFA68F000EA8CE3 /* main.m in Sources */,
+				2BE1B24F1AFA696E00EA8CE3 /* MHMessage.m in Sources */,
+				2BE1B2461AFA696E00EA8CE3 /* MH6ShotsProtocol.m in Sources */,
+				2BE1B2471AFA696E00EA8CE3 /* MH6ShotsSchedule.m in Sources */,
+				2BE1B24E1AFA696E00EA8CE3 /* MHLocationManager.m in Sources */,
+				2BE1B24D1AFA696E00EA8CE3 /* MHFloodingProtocol.m in Sources */,
+				2BE1B24B1AFA696E00EA8CE3 /* MHConnectionsHandler.m in Sources */,
+				2BE1B24A1AFA696E00EA8CE3 /* MHConnectionBuffer.m in Sources */,
+				2BE1B2481AFA696E00EA8CE3 /* MH6ShotsScheduler.m in Sources */,
+				2BE1B2581AFA696E00EA8CE3 /* MHUnicastSocket.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BE1B20B1AFA68F000EA8CE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BE1B2161AFA68F000EA8CE3 /* NetworkTestingTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2BE1B2111AFA68F000EA8CE3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2BE1B1F51AFA68F000EA8CE3 /* NetworkTesting */;
+			targetProxy = 2BE1B2101AFA68F000EA8CE3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2BE1B2031AFA68F000EA8CE3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2BE1B2041AFA68F000EA8CE3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2BE1B2081AFA68F000EA8CE3 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2BE1B2091AFA68F000EA8CE3 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2BE1B2171AFA68F000EA8CE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2BE1B2181AFA68F000EA8CE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2BE1B21A1AFA68F000EA8CE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = NetworkTesting/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2BE1B21B1AFA68F000EA8CE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = NetworkTesting/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		2BE1B21D1AFA68F000EA8CE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = NetworkTestingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NetworkTesting.app/NetworkTesting";
+			};
+			name = Debug;
+		};
+		2BE1B21E1AFA68F000EA8CE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = NetworkTestingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NetworkTesting.app/NetworkTesting";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2BE1B1F11AFA68F000EA8CE3 /* Build configuration list for PBXProject "NetworkTesting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BE1B2171AFA68F000EA8CE3 /* Debug */,
+				2BE1B2181AFA68F000EA8CE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BE1B2191AFA68F000EA8CE3 /* Build configuration list for PBXNativeTarget "NetworkTesting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BE1B21A1AFA68F000EA8CE3 /* Debug */,
+				2BE1B21B1AFA68F000EA8CE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BE1B21C1AFA68F000EA8CE3 /* Build configuration list for PBXNativeTarget "NetworkTestingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BE1B21D1AFA68F000EA8CE3 /* Debug */,
+				2BE1B21E1AFA68F000EA8CE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2BE1B1EE1AFA68F000EA8CE3 /* Project object */;
+}
