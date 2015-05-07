@@ -31,6 +31,8 @@
 @property (nonatomic) int nbBroadcasts;
 @property (nonatomic) int nbReceived;
 
+@property (nonatomic) BOOL failed;
+
 @end
 
 @implementation ViewController
@@ -40,9 +42,13 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.started = NO;
     self.broadcastButton.enabled = NO;
+    self.shotsSwitch.on = NO;
     self.endButton.enabled = NO;
+    self.nodeFailureSwitch.on = NO;
     self.nbBroadcasts = 0;
     self.nbReceived = 0;
+    self.group = @"";
+    self.failed = NO;
     
     self.peers = [[NSMutableArray alloc] init];
     self.targetPeers = [[NSMutableArray alloc] init];
@@ -68,7 +74,30 @@
     [self.logTextView setText:@""];
     self.nbBroadcasts = 0;
     self.nbReceived = 0;
+    self.failed = NO;
     
+    
+    if (self.nodeFailureSwitch.on)
+    {
+        if (arc4random() % 4 == 0)
+        {
+            int seconds = (arc4random_uniform(100) + 10);
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    if (self.floodingSwitch.on)
+                    {
+                        [self.uSocket disconnect];
+                    }
+                    else
+                    {
+                        [self.mSocket disconnect];
+                    }
+                
+                self.failed = YES;
+                [self writeLine:[NSString stringWithFormat:@"Node crashed after %d seconds (normal!!)", seconds]];
+            });
+        }
+    }
     
     
     if (self.floodingSwitch.on)
@@ -102,12 +131,18 @@
     
     if (self.floodingSwitch.on)
     {
-        [self.uSocket disconnect];
+        if(!self.failed)
+        {
+            [self.uSocket disconnect];
+        }
         self.uSocket = nil;
     }
     else
     {
-        [self.mSocket disconnect];
+        if (!self.failed)
+        {
+            [self.mSocket disconnect];
+        }
         self.mSocket = nil;
     }
     
@@ -142,7 +177,7 @@
 }
 
 - (IBAction)shotsValueChanged:(id)sender {
-    self.floodingSwitch.on = self.shotsSwitch.on;
+    self.floodingSwitch.on = !self.shotsSwitch.on;
 }
 
 - (void)writeLine:(NSString*)msg {
@@ -158,14 +193,7 @@
 
 - (void)report
 {
-    [self writeLine:[NSString stringWithFormat:@""]];
-    
     if (self.floodingSwitch.on)
-    {
-        [self writeLine:[NSString stringWithFormat:@"Joined group %@", self.group]];
-        [self writeLine:[NSString stringWithFormat:@"Broadcasted %d packets to group %@", self.nbBroadcasts, self.group]];
-    }
-    else
     {
         [self writeLine:[NSString stringWithFormat:@"Broadcasted %d packets to peers:", self.nbBroadcasts]];
         
@@ -173,6 +201,11 @@
         {
             [self writeLine:peer];
         }
+    }
+    else
+    {
+        [self writeLine:[NSString stringWithFormat:@"Joined group %@", self.group]];
+        [self writeLine:[NSString stringWithFormat:@"Broadcasted %d packets to group %@", self.nbBroadcasts, self.group]];
     }
     
     [self writeLine:[NSString stringWithFormat:@"Received %d packets", self.nbReceived]];
