@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MHUnicastSocket.h"
+#import "MHMulticastSocket.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (void)setUniSocket:(MHUnicastSocket *)socket;
+- (void)setMultiSocket:(MHMulticastSocket *)socket;
 
 @end
 

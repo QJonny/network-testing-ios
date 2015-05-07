@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 #import "MHDiagnostics.h"
 #import "MHMulticastSocket.h"
 #import "MHUnicastSocket.h"
