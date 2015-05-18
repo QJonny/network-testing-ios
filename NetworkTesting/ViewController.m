@@ -54,8 +54,8 @@
     self.targetPeers = [[NSMutableArray alloc] init];
     self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
-    [[MHDiagnostics getSingleton] useTraceInfo];
-    [[MHDiagnostics getSingleton] useRetransmissionInfo];
+    [MHDiagnostics getSingleton].useTraceInfo = YES;
+    [MHDiagnostics getSingleton].useRetransmissionInfo = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,7 +81,7 @@
     {
         if (arc4random() % 4 == 0)
         {
-            int seconds = (arc4random_uniform(100) + 10);
+            int seconds = (arc4random_uniform(20) + 5);
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     if (self.floodingSwitch.on)
@@ -127,7 +127,6 @@
     self.endButton.enabled = NO;
     
     [self.peers removeAllObjects];
-    [self.targetPeers removeAllObjects];
     
     if (self.floodingSwitch.on)
     {
@@ -150,6 +149,8 @@
     [self.appDelegate setMultiSocket:nil];
     
     [self report];
+    
+    [self.targetPeers removeAllObjects];
 }
 
 - (IBAction)broadcastPressed:(id)sender {
@@ -208,6 +209,7 @@
         [self writeLine:[NSString stringWithFormat:@"Broadcasted %d packets to group %@", self.nbBroadcasts, self.group]];
     }
     
+    
     [self writeLine:[NSString stringWithFormat:@"Received %d packets", self.nbReceived]];
     [self writeLine:[NSString stringWithFormat:@"Retransmission ratio: %f", [[MHDiagnostics getSingleton] getRetransmissionRatio]]];
 }
@@ -229,7 +231,10 @@
     
     if (arc4random() % 3 == 0)
     {
-        [self.targetPeers addObject:peer];
+        if (![self.targetPeers containsObject:peer])
+        {
+            [self.targetPeers addObject:peer];
+        }
     }
 }
 
@@ -237,11 +242,6 @@
         hasDisconnected:(NSString *)info
                    peer:(NSString *)peer{
     [self.peers removeObject:peer];
-    
-    if([self.targetPeers containsObject:peer])
-    {
-        [self.targetPeers removeObject:peer];
-    }
 }
 
 - (void)mhUnicastSocket:(MHUnicastSocket *)mhUnicastSocket

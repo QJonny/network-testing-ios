@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B2586A41B03A8E300EB563E /* MHUnicastTransportConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2586A31B03A8E300EB563E /* MHUnicastTransportConnection.m */; };
 		2BE1B1FC1AFA68F000EA8CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B1FB1AFA68F000EA8CE3 /* main.m */; };
 		2BE1B1FF1AFA68F000EA8CE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B1FE1AFA68F000EA8CE3 /* AppDelegate.m */; };
 		2BE1B2021AFA68F000EA8CE3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2011AFA68F000EA8CE3 /* ViewController.m */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B2586A21B03A8E300EB563E /* MHUnicastTransportConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHUnicastTransportConnection.h; path = "../multihop-lib-ios/Multihop/MHUnicastTransportConnection.h"; sourceTree = "<group>"; };
+		2B2586A31B03A8E300EB563E /* MHUnicastTransportConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHUnicastTransportConnection.m; path = "../multihop-lib-ios/Multihop/MHUnicastTransportConnection.m"; sourceTree = "<group>"; };
 		2BE1B1F61AFA68F000EA8CE3 /* NetworkTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE1B1FA1AFA68F000EA8CE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BE1B1FB1AFA68F000EA8CE3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 		2BE1B21F1AFA693B00EA8CE3 /* Multihop */ = {
 			isa = PBXGroup;
 			children = (
+				2B2586A21B03A8E300EB563E /* MHUnicastTransportConnection.h */,
+				2B2586A31B03A8E300EB563E /* MHUnicastTransportConnection.m */,
 				2BE1B2201AFA696E00EA8CE3 /* MH6ShotsProtocol.h */,
 				2BE1B2211AFA696E00EA8CE3 /* MH6ShotsProtocol.m */,
 				2BE1B2221AFA696E00EA8CE3 /* MH6ShotsSchedule.h */,
@@ -345,6 +350,7 @@
 				2BE1B2551AFA696E00EA8CE3 /* MHPeer.m in Sources */,
 				2BE1B1FC1AFA68F000EA8CE3 /* main.m in Sources */,
 				2BE1B24F1AFA696E00EA8CE3 /* MHMessage.m in Sources */,
+				2B2586A41B03A8E300EB563E /* MHUnicastTransportConnection.m in Sources */,
 				2BE1B2461AFA696E00EA8CE3 /* MH6ShotsProtocol.m in Sources */,
 				2BE1B2471AFA696E00EA8CE3 /* MH6ShotsSchedule.m in Sources */,
 				2BE1B24E1AFA696E00EA8CE3 /* MHLocationManager.m in Sources */,
