@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		2B2586A41B03A8E300EB563E /* MHUnicastTransportConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2586A31B03A8E300EB563E /* MHUnicastTransportConnection.m */; };
+		2B762F4E1B0A7A6C00301C82 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B762F4D1B0A7A6C00301C82 /* CFNetwork.framework */; };
+		2B762F5A1B0A7BCC00301C82 /* Base64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F511B0A7BCC00301C82 /* Base64Transcoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2B762F5B1B0A7BCC00301C82 /* HSK_CFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F531B0A7BCC00301C82 /* HSK_CFUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2B762F5C1B0A7BCC00301C82 /* NSData+Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F551B0A7BCC00301C82 /* NSData+Base64Additions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2B762F5D1B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F571B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2B762F5E1B0A7BCC00301C82 /* SKPSMTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F591B0A7BCC00301C82 /* SKPSMTPMessage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2BE1B1FC1AFA68F000EA8CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B1FB1AFA68F000EA8CE3 /* main.m */; };
 		2BE1B1FF1AFA68F000EA8CE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B1FE1AFA68F000EA8CE3 /* AppDelegate.m */; };
 		2BE1B2021AFA68F000EA8CE3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2011AFA68F000EA8CE3 /* ViewController.m */; };
@@ -50,6 +56,17 @@
 /* Begin PBXFileReference section */
 		2B2586A21B03A8E300EB563E /* MHUnicastTransportConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHUnicastTransportConnection.h; path = "../multihop-lib-ios/Multihop/MHUnicastTransportConnection.h"; sourceTree = "<group>"; };
 		2B2586A31B03A8E300EB563E /* MHUnicastTransportConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHUnicastTransportConnection.m; path = "../multihop-lib-ios/Multihop/MHUnicastTransportConnection.m"; sourceTree = "<group>"; };
+		2B762F4D1B0A7A6C00301C82 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		2B762F501B0A7BCC00301C82 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		2B762F511B0A7BCC00301C82 /* Base64Transcoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Transcoder.m; sourceTree = "<group>"; };
+		2B762F521B0A7BCC00301C82 /* HSK_CFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSK_CFUtilities.h; sourceTree = "<group>"; };
+		2B762F531B0A7BCC00301C82 /* HSK_CFUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSK_CFUtilities.m; sourceTree = "<group>"; };
+		2B762F541B0A7BCC00301C82 /* NSData+Base64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64Additions.h"; sourceTree = "<group>"; };
+		2B762F551B0A7BCC00301C82 /* NSData+Base64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64Additions.m"; sourceTree = "<group>"; };
+		2B762F561B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSStream+SKPSMTPExtensions.h"; sourceTree = "<group>"; };
+		2B762F571B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSStream+SKPSMTPExtensions.m"; sourceTree = "<group>"; };
+		2B762F581B0A7BCC00301C82 /* SKPSMTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPSMTPMessage.h; sourceTree = "<group>"; };
+		2B762F591B0A7BCC00301C82 /* SKPSMTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPSMTPMessage.m; sourceTree = "<group>"; };
 		2BE1B1F61AFA68F000EA8CE3 /* NetworkTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE1B1FA1AFA68F000EA8CE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BE1B1FB1AFA68F000EA8CE3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -109,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B762F4E1B0A7A6C00301C82 /* CFNetwork.framework in Frameworks */,
 				2BE1B25A1AFA69CC00EA8CE3 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,9 +141,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B762F4F1B0A7BCC00301C82 /* SMTPLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				2B762F501B0A7BCC00301C82 /* Base64Transcoder.h */,
+				2B762F511B0A7BCC00301C82 /* Base64Transcoder.m */,
+				2B762F521B0A7BCC00301C82 /* HSK_CFUtilities.h */,
+				2B762F531B0A7BCC00301C82 /* HSK_CFUtilities.m */,
+				2B762F541B0A7BCC00301C82 /* NSData+Base64Additions.h */,
+				2B762F551B0A7BCC00301C82 /* NSData+Base64Additions.m */,
+				2B762F561B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.h */,
+				2B762F571B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.m */,
+				2B762F581B0A7BCC00301C82 /* SKPSMTPMessage.h */,
+				2B762F591B0A7BCC00301C82 /* SKPSMTPMessage.m */,
+			);
+			name = SMTPLibrary;
+			path = NetworkTesting/SMTPLibrary;
+			sourceTree = "<group>";
+		};
 		2BE1B1ED1AFA68F000EA8CE3 = {
 			isa = PBXGroup;
 			children = (
+				2B762F4F1B0A7BCC00301C82 /* SMTPLibrary */,
+				2B762F4D1B0A7A6C00301C82 /* CFNetwork.framework */,
 				2BE1B2591AFA69CC00EA8CE3 /* CoreLocation.framework */,
 				2BE1B21F1AFA693B00EA8CE3 /* Multihop */,
 				2BE1B1F81AFA68F000EA8CE3 /* NetworkTesting */,
@@ -339,6 +377,7 @@
 				2BE1B2541AFA696E00EA8CE3 /* MHPacket.m in Sources */,
 				2BE1B2571AFA696E00EA8CE3 /* MHUnicastRoutingProtocol.m in Sources */,
 				2BE1B2021AFA68F000EA8CE3 /* ViewController.m in Sources */,
+				2B762F5C1B0A7BCC00301C82 /* NSData+Base64Additions.m in Sources */,
 				2BE1B2501AFA696E00EA8CE3 /* MHMulticastController.m in Sources */,
 				2BE1B2531AFA696E00EA8CE3 /* MHMultipeerWrapper.m in Sources */,
 				2BE1B2521AFA696E00EA8CE3 /* MHMulticastSocket.m in Sources */,
@@ -347,14 +386,18 @@
 				2BE1B1FF1AFA68F000EA8CE3 /* AppDelegate.m in Sources */,
 				2BE1B2561AFA696E00EA8CE3 /* MHUnicastController.m in Sources */,
 				2BE1B2491AFA696E00EA8CE3 /* MHComputation.m in Sources */,
+				2B762F5D1B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.m in Sources */,
 				2BE1B2551AFA696E00EA8CE3 /* MHPeer.m in Sources */,
 				2BE1B1FC1AFA68F000EA8CE3 /* main.m in Sources */,
 				2BE1B24F1AFA696E00EA8CE3 /* MHMessage.m in Sources */,
 				2B2586A41B03A8E300EB563E /* MHUnicastTransportConnection.m in Sources */,
+				2B762F5A1B0A7BCC00301C82 /* Base64Transcoder.m in Sources */,
 				2BE1B2461AFA696E00EA8CE3 /* MH6ShotsProtocol.m in Sources */,
 				2BE1B2471AFA696E00EA8CE3 /* MH6ShotsSchedule.m in Sources */,
 				2BE1B24E1AFA696E00EA8CE3 /* MHLocationManager.m in Sources */,
 				2BE1B24D1AFA696E00EA8CE3 /* MHFloodingProtocol.m in Sources */,
+				2B762F5E1B0A7BCC00301C82 /* SKPSMTPMessage.m in Sources */,
+				2B762F5B1B0A7BCC00301C82 /* HSK_CFUtilities.m in Sources */,
 				2BE1B24B1AFA696E00EA8CE3 /* MHConnectionsHandler.m in Sources */,
 				2BE1B24A1AFA696E00EA8CE3 /* MHConnectionBuffer.m in Sources */,
 				2BE1B2481AFA696E00EA8CE3 /* MH6ShotsScheduler.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController () <MHUnicastSocketDelegate, MHMulticastSocketDelegate>
+@interface ViewController () <MHUnicastSocketDelegate, MHMulticastSocketDelegate, SKPSMTPMessageDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *logTextView;
 @property (weak, nonatomic) IBOutlet UIButton *endButton;
 
@@ -33,6 +33,8 @@
 
 @property (nonatomic) BOOL failed;
 
+@property (nonatomic) int nbExperiments;
+
 @end
 
 @implementation ViewController
@@ -49,6 +51,7 @@
     self.nbReceived = 0;
     self.group = @"";
     self.failed = NO;
+    self.nbExperiments = 0;
     
     self.peers = [[NSMutableArray alloc] init];
     self.targetPeers = [[NSMutableArray alloc] init];
@@ -196,6 +199,7 @@
 {
     if (self.floodingSwitch.on)
     {
+        [self writeLine:[NSString stringWithFormat:@"Peer: %@", [self.uSocket getOwnPeer]]];
         [self writeLine:[NSString stringWithFormat:@"Broadcasted %d packets to peers:", self.nbBroadcasts]];
         
         for (id peer in self.targetPeers)
@@ -205,6 +209,7 @@
     }
     else
     {
+        [self writeLine:[NSString stringWithFormat:@"Peer: %@", [self.mSocket getOwnPeer]]];
         [self writeLine:[NSString stringWithFormat:@"Joined group %@", self.group]];
         [self writeLine:[NSString stringWithFormat:@"Broadcasted %d packets to group %@", self.nbBroadcasts, self.group]];
     }
@@ -212,6 +217,8 @@
     
     [self writeLine:[NSString stringWithFormat:@"Received %d packets", self.nbReceived]];
     [self writeLine:[NSString stringWithFormat:@"Retransmission ratio: %f", [[MHDiagnostics getSingleton] getRetransmissionRatio]]];
+    
+    [self sendEmailInBackground:[UIDevice currentDevice].name withBody:self.logTextView.text];
 }
 
 #pragma mark - MHUnicastSocketDelegate methods
@@ -267,6 +274,47 @@
             withTraceInfo:(NSArray *)traceInfo
 {
     self.nbReceived++;
+}
+
+
+
+#pragma mark -Email sending
+-(void) sendEmailInBackground:(NSString *)displayName
+                     withBody:(NSString *)messageBody {
+    self.nbExperiments++;
+    
+    SKPSMTPMessage *emailMessage = [[SKPSMTPMessage alloc] init];
+    emailMessage.fromEmail = SMTP_USER; //sender email address
+    emailMessage.toEmail = SMTP_USER;  //receiver email address
+    emailMessage.relayHost = SMTP_SERVER;
+
+    emailMessage.requiresAuth = YES;
+    emailMessage.login = SMTP_USER; //sender email address
+    emailMessage.pass = SMTP_PWD; //sender email password
+    emailMessage.subject = [NSString stringWithFormat:@"From [%@]: Experiment %d", displayName, self.nbExperiments];
+    emailMessage.wantsSecure = YES;
+    emailMessage.delegate = self;
+
+    // Now creating plain text email message
+    NSDictionary *plainMsg = [NSDictionary
+                              dictionaryWithObjectsAndKeys:@"text/plain",kSKPSMTPPartContentTypeKey,
+                              messageBody,kSKPSMTPPartMessageKey,@"8bit",kSKPSMTPPartContentTransferEncodingKey,nil];
+    emailMessage.parts = [NSArray arrayWithObjects:plainMsg,nil];
+
+    [emailMessage send];
+    // sending email- will take little time to send so its better to use indicator with message showing sending...
+}
+
+-(void)messageSent:(SKPSMTPMessage *)message
+{
+    NSLog (@"Message sent.");
+}
+// On Failure
+-(void)messageFailed:(SKPSMTPMessage *)message error:(NSError *)error
+{
+    // open an alert with just an OK button
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    [alert show];
 }
 
 @end
