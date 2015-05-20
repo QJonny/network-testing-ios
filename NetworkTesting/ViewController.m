@@ -87,11 +87,12 @@
             int seconds = (arc4random_uniform(20) + 5);
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    // Disconnection from network
                     if (self.floodingSwitch.on)
                     {
                         [self.uSocket disconnect];
                     }
-                    else
+                    else // But no group leaving!!
                     {
                         [self.mSocket disconnect];
                     }
@@ -115,6 +116,7 @@
         self.mSocket.delegate = self;
         [self.appDelegate setMultiSocket:self.mSocket];
         
+        // We join a random group ("0", "1" or "2")
         self.group = [NSString stringWithFormat:@"%d", (arc4random() % 3)];
         [self.mSocket joinGroup:self.group];
     }
@@ -131,6 +133,7 @@
     
     [self.peers removeAllObjects];
     
+    // Network disconnection
     if (self.floodingSwitch.on)
     {
         if(!self.failed)
@@ -236,6 +239,8 @@
             displayName:(NSString *)displayName{
     [self.peers addObject:peer];
     
+    // We will not broadcast messages to every peer in the network,
+    // but only approximatively 1/3
     if (arc4random() % 3 == 0)
     {
         if (![self.targetPeers containsObject:peer])
