@@ -30,7 +30,7 @@
 
 @property (nonatomic) BOOL failed;
 
-@property (nonatomic) int nbExperiments;
+@property (nonatomic) int nbExperiment;
 
 
 @end
@@ -50,7 +50,7 @@
         self.nbReceived = 0;
         self.group = @"";
         self.failed = NO;
-        self.nbExperiments = 0;
+        self.nbExperiment = 0;
         
         self.peers = [[NSMutableArray alloc] init];
         self.targetPeers = [[NSMutableArray alloc] init];
@@ -63,9 +63,10 @@
     return self;
 }
 
-- (void)startWithFlooding:(BOOL)isFlooding withNodeFailure:(BOOL)nodeFailure
+- (void)startWithExpNo:(int)expNo withFlooding:(BOOL)isFlooding withNodeFailure:(BOOL)nodeFailure
 {
     self.isFlooding = isFlooding;
+    self.nbExperiment = expNo;
     
     self.started = YES;
     self.nbBroadcasts = 0;
@@ -272,7 +273,6 @@
 #pragma mark -Email sending
 -(void) sendEmailInBackground:(NSString *)displayName
                      withBody:(NSString *)messageBody {
-    self.nbExperiments++;
     
     SKPSMTPMessage *emailMessage = [[SKPSMTPMessage alloc] init];
     emailMessage.fromEmail = SMTP_USER; //sender email address
@@ -282,7 +282,7 @@
     emailMessage.requiresAuth = YES;
     emailMessage.login = SMTP_USER; //sender email address
     emailMessage.pass = SMTP_PWD; //sender email password
-    emailMessage.subject = [NSString stringWithFormat:@"From [%@]: Experiment %d", displayName, self.nbExperiments];
+    emailMessage.subject = [NSString stringWithFormat:@"From [%@]: Experiment %d", displayName, self.nbExperiment];
     emailMessage.wantsSecure = YES;
     emailMessage.delegate = self;
     

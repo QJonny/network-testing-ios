@@ -34,7 +34,7 @@
 
 - (instancetype)init;
 
-- (void)startWithFlooding:(BOOL)isFlooding withNodeFailure:(BOOL)nodeFailure;
+- (void)startWithExpNo:(int)expNo withFlooding:(BOOL)isFlooding withNodeFailure:(BOOL)nodeFailure;
 - (void)end;
 - (void)broadcast;
 

@@ -9,14 +9,19 @@
 #import "ViewController.h"
 
 @interface ViewController () <NetworkManagerDelegate>
-@property (weak, nonatomic) IBOutlet UITextView *logTextView;
-@property (weak, nonatomic) IBOutlet UIButton *endButton;
-
-@property (weak, nonatomic) IBOutlet UIButton *startButton;
-@property (weak, nonatomic) IBOutlet UIButton *broadcastButton;
 @property (weak, nonatomic) IBOutlet UISwitch *nodeFailureSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *floodingSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *shotsSwitch;
+
+@property (weak, nonatomic) IBOutlet UILabel *experimentNoLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *experimentNoModifier;
+
+@property (weak, nonatomic) IBOutlet UITextView *logTextView;
+
+@property (weak, nonatomic) IBOutlet UIButton *endButton;
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *broadcastButton;
 
 @property (nonatomic, strong) NetworkManager *networkManager;
 
@@ -32,8 +37,12 @@
     self.endButton.enabled = NO;
     self.nodeFailureSwitch.on = NO;
     
+    self.experimentNoModifier.enabled = YES;
+    
     self.networkManager = [[NetworkManager alloc] init];
     self.networkManager.delegate = self;
+    
+    [self.experimentNoLabel setText:[NSString stringWithFormat:@"Exp. no: %d", (int) self.experimentNoModifier.value]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,10 +59,13 @@
     self.endButton.enabled = YES;
     [self.logTextView setText:@""];
     
-    [self.networkManager startWithFlooding:self.floodingSwitch.on withNodeFailure:self.nodeFailureSwitch.on];
+    [self.networkManager startWithExpNo:(int) self.experimentNoModifier.value withFlooding:self.floodingSwitch.on withNodeFailure:self.nodeFailureSwitch.on];
 }
 
 - (IBAction)endPressed:(id)sender {
+    self.experimentNoModifier.value++;
+    [self.experimentNoLabel setText:[NSString stringWithFormat:@"Exp. no: %d", (int) self.experimentNoModifier.value]];
+    
     self.nodeFailureSwitch.enabled = YES;
     self.floodingSwitch.enabled = YES;
     self.shotsSwitch.enabled = YES;
@@ -77,6 +89,9 @@
     self.floodingSwitch.on = !self.shotsSwitch.on;
 }
 
+- (IBAction)expValueChanged:(id)sender {
+    [self.experimentNoLabel setText:[NSString stringWithFormat:@"Exp. no: %d", (int) self.experimentNoModifier.value]];
+}
 
 #pragma mark - NetworkManagerDelegate methods
 - (void)networkManager:(NetworkManager *)networkManager writeText:(NSString *)text
