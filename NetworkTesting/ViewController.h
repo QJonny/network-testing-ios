@@ -7,19 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AppDelegate.h"
-#import "MHDiagnostics.h"
-#import "MHMulticastSocket.h"
-#import "MHUnicastSocket.h"
 
-// Email sending
-#import "SKPSMTPMessage.h"
-#import "NSData+Base64Additions.h" // for Base64 encoding
-
-
-#define SMTP_SERVER @"smtp.live.com"
-#define SMTP_USER @"react.group@hotmail.com"
-#define SMTP_PWD @"reactgroup1234"
+#import "NetworkManager.h"
 
 @interface ViewController : UIViewController
 
