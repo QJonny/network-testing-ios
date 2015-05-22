@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B01D58A1B0E3414009A4652 /* ExperimentReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B01D5891B0E3414009A4652 /* ExperimentReport.m */; };
+		2B01D58D1B0F5EEA009A4652 /* EmailSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B01D58C1B0F5EEA009A4652 /* EmailSender.m */; };
 		2B2586A41B03A8E300EB563E /* MHUnicastTransportConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2586A31B03A8E300EB563E /* MHUnicastTransportConnection.m */; };
 		2B762F4E1B0A7A6C00301C82 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B762F4D1B0A7A6C00301C82 /* CFNetwork.framework */; };
 		2B762F5A1B0A7BCC00301C82 /* Base64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F511B0A7BCC00301C82 /* Base64Transcoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -55,6 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B01D5881B0E33FE009A4652 /* ExperimentReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExperimentReport.h; sourceTree = "<group>"; };
+		2B01D5891B0E3414009A4652 /* ExperimentReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperimentReport.m; sourceTree = "<group>"; };
+		2B01D58B1B0F5EDA009A4652 /* EmailSender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmailSender.h; sourceTree = "<group>"; };
+		2B01D58C1B0F5EEA009A4652 /* EmailSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSender.m; sourceTree = "<group>"; };
 		2B2586A21B03A8E300EB563E /* MHUnicastTransportConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHUnicastTransportConnection.h; path = "../multihop-lib-ios/Multihop/MHUnicastTransportConnection.h"; sourceTree = "<group>"; };
 		2B2586A31B03A8E300EB563E /* MHUnicastTransportConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHUnicastTransportConnection.m; path = "../multihop-lib-ios/Multihop/MHUnicastTransportConnection.m"; sourceTree = "<group>"; };
 		2B762F4D1B0A7A6C00301C82 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -194,9 +200,13 @@
 				2BE1B2031AFA68F000EA8CE3 /* Main.storyboard */,
 				2BE1B2061AFA68F000EA8CE3 /* Images.xcassets */,
 				2BE1B2081AFA68F000EA8CE3 /* LaunchScreen.xib */,
-				2BE1B1F91AFA68F000EA8CE3 /* Supporting Files */,
 				2B762F5F1B0CB7FD00301C82 /* NetworkManager.h */,
 				2B762F601B0CB81400301C82 /* NetworkManager.m */,
+				2B01D5881B0E33FE009A4652 /* ExperimentReport.h */,
+				2B01D5891B0E3414009A4652 /* ExperimentReport.m */,
+				2B01D58B1B0F5EDA009A4652 /* EmailSender.h */,
+				2B01D58C1B0F5EEA009A4652 /* EmailSender.m */,
+				2BE1B1F91AFA68F000EA8CE3 /* Supporting Files */,
 			);
 			path = NetworkTesting;
 			sourceTree = "<group>";
@@ -385,6 +395,7 @@
 				2BE1B2021AFA68F000EA8CE3 /* ViewController.m in Sources */,
 				2B762F5C1B0A7BCC00301C82 /* NSData+Base64Additions.m in Sources */,
 				2BE1B2501AFA696E00EA8CE3 /* MHMulticastController.m in Sources */,
+				2B01D58A1B0E3414009A4652 /* ExperimentReport.m in Sources */,
 				2BE1B2531AFA696E00EA8CE3 /* MHMultipeerWrapper.m in Sources */,
 				2BE1B2521AFA696E00EA8CE3 /* MHMulticastSocket.m in Sources */,
 				2BE1B2511AFA696E00EA8CE3 /* MHMulticastRoutingProtocol.m in Sources */,
@@ -403,6 +414,7 @@
 				2BE1B24E1AFA696E00EA8CE3 /* MHLocationManager.m in Sources */,
 				2BE1B24D1AFA696E00EA8CE3 /* MHFloodingProtocol.m in Sources */,
 				2B762F5E1B0A7BCC00301C82 /* SKPSMTPMessage.m in Sources */,
+				2B01D58D1B0F5EEA009A4652 /* EmailSender.m in Sources */,
 				2B762F5B1B0A7BCC00301C82 /* HSK_CFUtilities.m in Sources */,
 				2BE1B24B1AFA696E00EA8CE3 /* MHConnectionsHandler.m in Sources */,
 				2BE1B24A1AFA696E00EA8CE3 /* MHConnectionBuffer.m in Sources */,

@@ -9,7 +9,7 @@
 #import "NetworkManager.h"
 
 
-@interface NetworkManager () <MHUnicastSocketDelegate, MHMulticastSocketDelegate, SKPSMTPMessageDelegate>
+@interface NetworkManager () <MHUnicastSocketDelegate, MHMulticastSocketDelegate>
 
 @property (nonatomic) BOOL isFlooding;
 
@@ -30,8 +30,8 @@
 
 @property (nonatomic) BOOL failed;
 
-@property (nonatomic) int nbExperiment;
 
+@property (nonatomic, strong) NSMutableArray *expReports;
 
 @end
 
@@ -50,7 +50,7 @@
         self.nbReceived = 0;
         self.group = @"";
         self.failed = NO;
-        self.nbExperiment = 0;
+        self.expReports = [[NSMutableArray alloc] init];
         
         self.peers = [[NSMutableArray alloc] init];
         self.targetPeers = [[NSMutableArray alloc] init];
@@ -63,10 +63,29 @@
     return self;
 }
 
+
+- (void)dealloc
+{
+    self.writeBuffer = nil;
+    [self.expReports removeAllObjects];
+    self.expReports = nil;
+    
+    [self.peers removeAllObjects];
+    self.peers = nil;
+    
+    [self.targetPeers removeAllObjects];
+    self.targetPeers = nil;
+}
+
+
+
+
 - (void)startWithExpNo:(int)expNo withFlooding:(BOOL)isFlooding withNodeFailure:(BOOL)nodeFailure
 {
+    [self.expReports addObject:[[ExperimentReport alloc] initWithNo:expNo]];
+    
+    
     self.isFlooding = isFlooding;
-    self.nbExperiment = expNo;
     
     self.started = YES;
     self.nbBroadcasts = 0;
@@ -168,6 +187,11 @@
 }
 
 
+- (ExperimentReport *)currentExpReport
+{
+    return [self.expReports lastObject];
+}
+
 
 - (void)report
 {
@@ -192,16 +216,28 @@
     [self writeLine:[NSString stringWithFormat:@"Received %d packets", self.nbReceived]];
     [self writeLine:[NSString stringWithFormat:@"Retransmission ratio: %f", [[MHDiagnostics getSingleton] getRetransmissionRatio]]];
     
-    [self sendEmailInBackground:[UIDevice currentDevice].name withBody:self.writeBuffer];
     
     [self flushWriteBuffer];
 }
 
 
+- (void)sendResults
+{
+    for (id reportObj in self.expReports)
+    {
+        ExperimentReport *report = (ExperimentReport *)reportObj;
+        
+        [report send];
+    }
+    
+    [self.expReports removeAllObjects];
+}
+
 
 #pragma mark - Writeline methods
 - (void)writeLine:(NSString*)msg {
     self.writeBuffer = [NSString stringWithFormat:@"%@%@\n", self.writeBuffer, msg];
+    [[self currentExpReport] writeLine:msg];
 }
 
 - (void)flushWriteBuffer
@@ -219,6 +255,8 @@
           withTraceInfo:(NSArray *)traceInfo
 {
     self.nbReceived++;
+    
+    [[self currentExpReport] writeTraceInfo:traceInfo];
 }
 
 - (void)mhUnicastSocket:(MHUnicastSocket *)mhUnicastSocket
@@ -266,47 +304,11 @@
             withTraceInfo:(NSArray *)traceInfo
 {
     self.nbReceived++;
+    
+    [[self currentExpReport] writeTraceInfo:traceInfo];
 }
 
 
 
-#pragma mark -Email sending
--(void) sendEmailInBackground:(NSString *)displayName
-                     withBody:(NSString *)messageBody {
-    
-    SKPSMTPMessage *emailMessage = [[SKPSMTPMessage alloc] init];
-    emailMessage.fromEmail = SMTP_USER; //sender email address
-    emailMessage.toEmail = SMTP_USER;  //receiver email address
-    emailMessage.relayHost = SMTP_SERVER;
-    
-    emailMessage.requiresAuth = YES;
-    emailMessage.login = SMTP_USER; //sender email address
-    emailMessage.pass = SMTP_PWD; //sender email password
-    emailMessage.subject = [NSString stringWithFormat:@"From [%@]: Experiment %d", displayName, self.nbExperiment];
-    emailMessage.wantsSecure = YES;
-    emailMessage.delegate = self;
-    
-    // Now creating plain text email message
-    NSDictionary *plainMsg = [NSDictionary
-                              dictionaryWithObjectsAndKeys:@"text/plain",kSKPSMTPPartContentTypeKey,
-                              messageBody,kSKPSMTPPartMessageKey,@"8bit",kSKPSMTPPartContentTransferEncodingKey,nil];
-    emailMessage.parts = [NSArray arrayWithObjects:plainMsg,nil];
-    
-    [emailMessage send];
-    // sending email- will take little time to send so its better to use indicator with message showing sending...
-}
-
--(void)messageSent:(SKPSMTPMessage *)message
-{
-    NSLog (@"Message sent.");
-}
-
-// On Failure
--(void)messageFailed:(SKPSMTPMessage *)message error:(NSError *)error
-{
-    // open an alert with just an OK button
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-    [alert show];
-}
 
 @end

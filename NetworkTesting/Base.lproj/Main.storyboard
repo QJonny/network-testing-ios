@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-Nx-LrK">
-                                <rect key="frame" x="16" y="225" width="95" height="30"/>
+                                <rect key="frame" x="16" y="250" width="95" height="30"/>
                                 <state key="normal" title="Start Exp.">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -27,7 +27,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMZ-Jx-NLy">
-                                <rect key="frame" x="16" y="255" width="129" height="36"/>
+                                <rect key="frame" x="16" y="280" width="129" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Broadcast">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIz-0j-PTT">
-                                <rect key="frame" x="135" y="225" width="81" height="30"/>
+                                <rect key="frame" x="135" y="250" width="81" height="30"/>
                                 <state key="normal" title="End Exp.">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -69,6 +69,12 @@
                                     <action selector="floodingValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="tCh-Ww-gKB"/>
                                 </connections>
                             </switch>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.29999999999999999" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mxu-EL-gOn">
+                                <rect key="frame" x="21" y="324" width="208" height="152"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gsM-zq-Xmj">
                                 <rect key="frame" x="172" y="99" width="51" height="31"/>
                             </switch>
@@ -97,23 +103,26 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="LcV-UA-uFi">
-                                <rect key="frame" x="140" y="188" width="94" height="29"/>
+                                <rect key="frame" x="140" y="213" width="94" height="29"/>
                                 <connections>
                                     <action selector="expValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="dY4-2c-KdL"/>
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exp. no: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiM-PY-rPV">
-                                <rect key="frame" x="25" y="192" width="107" height="21"/>
+                                <rect key="frame" x="25" y="217" width="107" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.29999999999999999" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mxu-EL-gOn">
-                                <rect key="frame" x="21" y="299" width="208" height="152"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hm0-dB-ToN">
+                                <rect key="frame" x="16" y="179" width="115" height="30"/>
+                                <state key="normal" title="Send all results">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendResultsPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="QkL-0i-XOL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -130,6 +139,7 @@
                         <outlet property="floodingSwitch" destination="oM4-7j-dud" id="CLd-p5-Cjj"/>
                         <outlet property="logTextView" destination="Mxu-EL-gOn" id="TXO-Sp-fyf"/>
                         <outlet property="nodeFailureSwitch" destination="gsM-zq-Xmj" id="LFf-gD-ny9"/>
+                        <outlet property="sendResultsButton" destination="hm0-dB-ToN" id="4xB-n9-Nym"/>
                         <outlet property="shotsSwitch" destination="t75-RV-Ond" id="M9E-qu-QNY"/>
                         <outlet property="startButton" destination="9xf-Nx-LrK" id="rxG-Qh-nQD"/>
                     </connections>

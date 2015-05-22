@@ -14,14 +14,7 @@
 #import "MHMulticastSocket.h"
 #import "MHUnicastSocket.h"
 
-// Email sending
-#import "SKPSMTPMessage.h"
-#import "NSData+Base64Additions.h" // for Base64 encoding
-
-
-#define SMTP_SERVER @"smtp.live.com"
-#define SMTP_USER @"react.group@hotmail.com"
-#define SMTP_PWD @"reactgroup1234"
+#import "ExperimentReport.h"
 
 
 
@@ -37,6 +30,8 @@
 - (void)startWithExpNo:(int)expNo withFlooding:(BOOL)isFlooding withNodeFailure:(BOOL)nodeFailure;
 - (void)end;
 - (void)broadcast;
+
+- (void)sendResults;
 
 @end
 

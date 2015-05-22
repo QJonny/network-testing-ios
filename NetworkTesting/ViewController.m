@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 @interface ViewController () <NetworkManagerDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *sendResultsButton;
 @property (weak, nonatomic) IBOutlet UISwitch *nodeFailureSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *floodingSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *shotsSwitch;
@@ -37,6 +38,7 @@
     self.endButton.enabled = NO;
     self.nodeFailureSwitch.on = NO;
     
+    self.sendResultsButton.enabled = YES;
     self.experimentNoModifier.enabled = YES;
     
     self.networkManager = [[NetworkManager alloc] init];
@@ -51,6 +53,8 @@
 }
 
 - (IBAction)startPressed:(id)sender {
+    self.experimentNoModifier.enabled = NO;
+    self.sendResultsButton.enabled = NO;
     self.nodeFailureSwitch.enabled = NO;
     self.floodingSwitch.enabled = NO;
     self.shotsSwitch.enabled = NO;
@@ -63,6 +67,9 @@
 }
 
 - (IBAction)endPressed:(id)sender {
+    self.experimentNoModifier.enabled = YES;
+    self.sendResultsButton.enabled = YES;
+    
     self.experimentNoModifier.value++;
     [self.experimentNoLabel setText:[NSString stringWithFormat:@"Exp. no: %d", (int) self.experimentNoModifier.value]];
     
@@ -91,6 +98,9 @@
 
 - (IBAction)expValueChanged:(id)sender {
     [self.experimentNoLabel setText:[NSString stringWithFormat:@"Exp. no: %d", (int) self.experimentNoModifier.value]];
+}
+- (IBAction)sendResultsPressed:(id)sender {
+    [self.networkManager sendResults];
 }
 
 #pragma mark - NetworkManagerDelegate methods
