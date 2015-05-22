@@ -26,16 +26,6 @@
                                     <action selector="startPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="O0Q-sm-2iQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMZ-Jx-NLy">
-                                <rect key="frame" x="16" y="280" width="129" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Broadcast">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="broadcastPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="mwf-Zk-IvZ"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIz-0j-PTT">
                                 <rect key="frame" x="135" y="250" width="81" height="30"/>
                                 <state key="normal" title="End Exp.">
@@ -46,7 +36,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Node failure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnI-IA-7bw">
-                                <rect key="frame" x="229" y="107" width="102" height="15"/>
+                                <rect key="frame" x="218" y="107" width="102" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -76,7 +66,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gsM-zq-Xmj">
-                                <rect key="frame" x="172" y="99" width="51" height="31"/>
+                                <rect key="frame" x="161" y="99" width="51" height="31"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flooding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBu-nj-IMO">
                                 <rect key="frame" x="78" y="103" width="102" height="23"/>
@@ -91,12 +81,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Other options" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gB-gq-3Nu">
-                                <rect key="frame" x="178" y="63" width="126" height="26"/>
+                                <rect key="frame" x="159" y="63" width="126" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Network Testing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCf-Ph-CsA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Network Testing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCf-Ph-CsA">
                                 <rect key="frame" x="192" y="10" width="230" height="56"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -123,12 +113,28 @@
                                     <action selector="sendResultsPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="QkL-0i-XOL"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMZ-Jx-NLy">
+                                <rect key="frame" x="16" y="280" width="129" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Broadcast">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="broadcastPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="mwf-Zk-IvZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Mxu-EL-gOn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="04q-Au-vvT"/>
+                            <constraint firstItem="GCf-Ph-CsA" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="15" id="2E3-VB-6MQ"/>
                             <constraint firstItem="Mxu-EL-gOn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="6zr-WP-PHL"/>
+                            <constraint firstAttribute="trailing" secondItem="Mxu-EL-gOn" secondAttribute="trailing" constant="20" id="9Qs-Ab-ohn"/>
+                            <constraint firstAttribute="centerX" secondItem="GCf-Ph-CsA" secondAttribute="centerX" id="WcV-Pb-OmI"/>
                             <constraint firstItem="Mxu-EL-gOn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="abd-fi-PEE"/>
+                            <constraint firstAttribute="bottom" secondItem="Mxu-EL-gOn" secondAttribute="bottom" constant="20" id="aeS-ze-4PZ"/>
+                            <constraint firstItem="Mxu-EL-gOn" firstAttribute="top" secondItem="AMZ-Jx-NLy" secondAttribute="bottom" constant="20" id="jg0-PL-KVV"/>
+                            <constraint firstItem="Mxu-EL-gOn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="z3d-0Q-PNO"/>
                         </constraints>
                     </view>
                     <connections>
