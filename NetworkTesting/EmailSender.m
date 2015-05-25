@@ -91,6 +91,8 @@ static EmailSender *sender = nil;
     // open an alert with just an OK button
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     [alert show];
+
+    [message send]; // We try to resend the message in case of an error 
 }
 
 @end
