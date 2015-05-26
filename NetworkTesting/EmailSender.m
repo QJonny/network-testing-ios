@@ -1,3 +1,4 @@
+
 //
 //  EmailSender.m
 //  NetworkTesting
@@ -92,7 +93,23 @@ static EmailSender *sender = nil;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     [alert show];
 
-    [message send]; // We try to resend the message in case of an error 
+    
+    // We try to resend the message in case of an error
+    SKPSMTPMessage *emailMessage = [[SKPSMTPMessage alloc] init];
+    emailMessage.fromEmail = SMTP_USER; //sender email address
+    emailMessage.toEmail = SMTP_USER;  //receiver email address
+    emailMessage.relayHost = SMTP_SERVER;
+    
+    emailMessage.requiresAuth = YES;
+    emailMessage.login = SMTP_USER; //sender email address
+    emailMessage.pass = SMTP_PWD; //sender email password
+    emailMessage.subject = message.subject;
+    emailMessage.wantsSecure = YES;
+    emailMessage.delegate = self;
+    
+    emailMessage.parts = message.parts;
+    
+    [emailMessage send];
 }
 
 @end

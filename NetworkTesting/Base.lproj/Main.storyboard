@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-Nx-LrK">
-                                <rect key="frame" x="16" y="250" width="95" height="30"/>
+                                <rect key="frame" x="16" y="210" width="95" height="30"/>
                                 <state key="normal" title="Start Exp.">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -26,8 +26,18 @@
                                     <action selector="startPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="O0Q-sm-2iQ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMZ-Jx-NLy">
+                                <rect key="frame" x="16" y="250" width="129" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Send packet">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="broadcastPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="mwf-Zk-IvZ"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIz-0j-PTT">
-                                <rect key="frame" x="135" y="250" width="81" height="30"/>
+                                <rect key="frame" x="135" y="210" width="81" height="30"/>
                                 <state key="normal" title="End Exp.">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -36,52 +46,40 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Node failure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnI-IA-7bw">
-                                <rect key="frame" x="218" y="107" width="102" height="15"/>
+                                <rect key="frame" x="73" y="107" width="102" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t75-RV-Ond">
-                                <rect key="frame" x="21" y="139" width="51" height="31"/>
-                                <connections>
-                                    <action selector="shotsValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="hbF-DT-JFA"/>
-                                </connections>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="6Shots" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeJ-p4-voF">
-                                <rect key="frame" x="78" y="147" width="102" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Receive packets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeJ-p4-voF">
+                                <rect key="frame" x="73" y="142" width="143" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oM4-7j-dud">
-                                <rect key="frame" x="21" y="99" width="51" height="31"/>
+                                <rect key="frame" x="173" y="97" width="51" height="31"/>
                                 <connections>
-                                    <action selector="floodingValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="tCh-Ww-gKB"/>
+                                    <action selector="algValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Pq7-Ep-NZf"/>
                                 </connections>
                             </switch>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.29999999999999999" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mxu-EL-gOn">
-                                <rect key="frame" x="21" y="324" width="208" height="152"/>
+                                <rect key="frame" x="20" y="294" width="208" height="152"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gsM-zq-Xmj">
-                                <rect key="frame" x="161" y="99" width="51" height="31"/>
+                                <rect key="frame" x="16" y="99" width="51" height="31"/>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flooding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBu-nj-IMO">
-                                <rect key="frame" x="78" y="103" width="102" height="23"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Algorithm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwJ-Pm-RM1">
-                                <rect key="frame" x="30" y="63" width="90" height="26"/>
+                                <rect key="frame" x="182" y="61" width="90" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Other options" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gB-gq-3Nu">
-                                <rect key="frame" x="159" y="63" width="126" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Options" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gB-gq-3Nu">
+                                <rect key="frame" x="15" y="63" width="126" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -93,34 +91,33 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="LcV-UA-uFi">
-                                <rect key="frame" x="140" y="213" width="94" height="29"/>
+                                <rect key="frame" x="140" y="173" width="94" height="29"/>
                                 <connections>
                                     <action selector="expValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="dY4-2c-KdL"/>
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exp. no: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiM-PY-rPV">
-                                <rect key="frame" x="25" y="217" width="107" height="21"/>
+                                <rect key="frame" x="25" y="177" width="107" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hm0-dB-ToN">
-                                <rect key="frame" x="16" y="179" width="115" height="30"/>
-                                <state key="normal" title="Send all results">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flooding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w40-g2-yaa">
+                                <rect key="frame" x="230" y="99" width="102" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t75-RV-Ond">
+                                <rect key="frame" x="16" y="138" width="51" height="31"/>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hm0-dB-ToN">
+                                <rect key="frame" x="15" y="490" width="183" height="30"/>
+                                <state key="normal" title="Send results from all exp.">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="sendResultsPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="QkL-0i-XOL"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMZ-Jx-NLy">
-                                <rect key="frame" x="16" y="280" width="129" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Broadcast">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="broadcastPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="mwf-Zk-IvZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -130,23 +127,25 @@
                             <constraint firstItem="GCf-Ph-CsA" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="15" id="2E3-VB-6MQ"/>
                             <constraint firstItem="Mxu-EL-gOn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="6zr-WP-PHL"/>
                             <constraint firstAttribute="trailing" secondItem="Mxu-EL-gOn" secondAttribute="trailing" constant="20" id="9Qs-Ab-ohn"/>
+                            <constraint firstAttribute="bottom" secondItem="Mxu-EL-gOn" secondAttribute="bottom" constant="50" id="H6R-4m-Fya"/>
                             <constraint firstAttribute="centerX" secondItem="GCf-Ph-CsA" secondAttribute="centerX" id="WcV-Pb-OmI"/>
                             <constraint firstItem="Mxu-EL-gOn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="abd-fi-PEE"/>
-                            <constraint firstAttribute="bottom" secondItem="Mxu-EL-gOn" secondAttribute="bottom" constant="20" id="aeS-ze-4PZ"/>
+                            <constraint firstAttribute="bottom" secondItem="hm0-dB-ToN" secondAttribute="bottom" constant="20" id="i4L-op-ut4"/>
                             <constraint firstItem="Mxu-EL-gOn" firstAttribute="top" secondItem="AMZ-Jx-NLy" secondAttribute="bottom" constant="20" id="jg0-PL-KVV"/>
                             <constraint firstItem="Mxu-EL-gOn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="z3d-0Q-PNO"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="algLabel" destination="w40-g2-yaa" id="h6p-eA-QgR"/>
+                        <outlet property="algSwitch" destination="oM4-7j-dud" id="oDc-o4-idp"/>
                         <outlet property="broadcastButton" destination="AMZ-Jx-NLy" id="gdl-Ao-Ycz"/>
                         <outlet property="endButton" destination="VIz-0j-PTT" id="wsj-oG-9OU"/>
                         <outlet property="experimentNoLabel" destination="DiM-PY-rPV" id="WTO-cf-uzO"/>
                         <outlet property="experimentNoModifier" destination="LcV-UA-uFi" id="rOC-QC-VUt"/>
-                        <outlet property="floodingSwitch" destination="oM4-7j-dud" id="CLd-p5-Cjj"/>
                         <outlet property="logTextView" destination="Mxu-EL-gOn" id="TXO-Sp-fyf"/>
                         <outlet property="nodeFailureSwitch" destination="gsM-zq-Xmj" id="LFf-gD-ny9"/>
+                        <outlet property="rcvPacketsSwitch" destination="t75-RV-Ond" id="0e0-Pm-d4G"/>
                         <outlet property="sendResultsButton" destination="hm0-dB-ToN" id="4xB-n9-Nym"/>
-                        <outlet property="shotsSwitch" destination="t75-RV-Ond" id="M9E-qu-QNY"/>
                         <outlet property="startButton" destination="9xf-Nx-LrK" id="rxG-Qh-nQD"/>
                     </connections>
                 </viewController>

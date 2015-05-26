@@ -17,6 +17,8 @@
 #import "ExperimentReport.h"
 
 
+#define GROUP_RCV @"group_rcv"
+#define GROUP_NOT_RCV @"group_not_rcv"
 
 @protocol NetworkManagerDelegate;
 
@@ -27,7 +29,10 @@
 
 - (instancetype)init;
 
-- (void)startWithExpNo:(int)expNo withFlooding:(BOOL)isFlooding withNodeFailure:(BOOL)nodeFailure;
+- (void)startWithExpNo:(int)expNo
+          withFlooding:(BOOL)isFlooding
+       withNodeFailure:(BOOL)nodeFailure
+           withReceive:(BOOL)receivePackets;
 - (void)end;
 - (void)broadcast;
 
@@ -41,7 +46,7 @@
 
 @required
 - (void)networkManager:(NetworkManager *)networkManager
-   writeText:(NSString *)text;
+   writeLine:(NSString *)msg;
 @end
 
 #endif

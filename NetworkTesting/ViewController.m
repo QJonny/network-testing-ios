@@ -9,10 +9,14 @@
 #import "ViewController.h"
 
 @interface ViewController () <NetworkManagerDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *algLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *algSwitch;
+
+@property (weak, nonatomic) IBOutlet UISwitch *rcvPacketsSwitch;
+
 @property (weak, nonatomic) IBOutlet UIButton *sendResultsButton;
 @property (weak, nonatomic) IBOutlet UISwitch *nodeFailureSwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *floodingSwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *shotsSwitch;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *experimentNoLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *experimentNoModifier;
@@ -34,7 +38,7 @@
     [super viewDidLoad];
 
     self.broadcastButton.enabled = NO;
-    self.shotsSwitch.on = NO;
+    self.rcvPacketsSwitch.on = NO;
     self.endButton.enabled = NO;
     self.nodeFailureSwitch.on = NO;
     
@@ -52,18 +56,30 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (IBAction)algValueChanged:(id)sender {
+    if (self.algSwitch.on)
+    {
+        [self.algLabel setText:@"Flooding"];
+    }
+    else
+    {
+        [self.algLabel setText:@"6Shots"];
+    }
+}
+
 - (IBAction)startPressed:(id)sender {
     self.experimentNoModifier.enabled = NO;
     self.sendResultsButton.enabled = NO;
     self.nodeFailureSwitch.enabled = NO;
-    self.floodingSwitch.enabled = NO;
-    self.shotsSwitch.enabled = NO;
+    self.algSwitch.enabled = NO;
+    self.rcvPacketsSwitch.enabled = NO;
     self.broadcastButton.enabled = YES;
     self.startButton.enabled = NO;
     self.endButton.enabled = YES;
     [self.logTextView setText:@""];
     
-    [self.networkManager startWithExpNo:(int) self.experimentNoModifier.value withFlooding:self.floodingSwitch.on withNodeFailure:self.nodeFailureSwitch.on];
+    [self.networkManager startWithExpNo:(int) self.experimentNoModifier.value withFlooding:self.algSwitch.on withNodeFailure:self.nodeFailureSwitch.on withReceive:self.rcvPacketsSwitch.on];
 }
 
 - (IBAction)endPressed:(id)sender {
@@ -74,8 +90,8 @@
     [self.experimentNoLabel setText:[NSString stringWithFormat:@"Exp. no: %d", (int) self.experimentNoModifier.value]];
     
     self.nodeFailureSwitch.enabled = YES;
-    self.floodingSwitch.enabled = YES;
-    self.shotsSwitch.enabled = YES;
+    self.algSwitch.enabled = YES;
+    self.rcvPacketsSwitch.enabled = YES;
     self.broadcastButton.enabled = NO;
     self.startButton.enabled = YES;
     self.endButton.enabled = NO;
@@ -88,25 +104,19 @@
 }
 
 
-- (IBAction)floodingValueChanged:(id)sender {
-    self.shotsSwitch.on = !self.floodingSwitch.on;
-}
-
-- (IBAction)shotsValueChanged:(id)sender {
-    self.floodingSwitch.on = !self.shotsSwitch.on;
-}
-
 - (IBAction)expValueChanged:(id)sender {
     [self.experimentNoLabel setText:[NSString stringWithFormat:@"Exp. no: %d", (int) self.experimentNoModifier.value]];
 }
+
 - (IBAction)sendResultsPressed:(id)sender {
     [self.networkManager sendResults];
+    self.sendResultsButton.enabled = NO;
 }
 
 #pragma mark - NetworkManagerDelegate methods
-- (void)networkManager:(NetworkManager *)networkManager writeText:(NSString *)text
+- (void)networkManager:(NetworkManager *)networkManager writeLine:(NSString *)msg
 {
-    [self.logTextView setText:text];
+    [self.logTextView setText:[NSString stringWithFormat:@"%@%@\n", self.logTextView.text, msg]];
     
     if(self.logTextView.text.length > 0)
     {
