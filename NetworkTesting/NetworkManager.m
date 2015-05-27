@@ -275,6 +275,7 @@
         hasDisconnected:(NSString *)info
                    peer:(NSString *)peer{
     [self.peers removeObject:peer];
+    [self writeLine:[NSString stringWithFormat:@"Peer %@ has disconnected", peer]];
 }
 
 - (void)mhUnicastSocket:(MHUnicastSocket *)mhUnicastSocket
