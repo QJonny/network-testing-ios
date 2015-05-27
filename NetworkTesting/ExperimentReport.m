@@ -46,7 +46,7 @@
 
 - (void)writeLine:(NSString *)msg
 {
-    self.writeBuffer = [NSString stringWithFormat:@"%@%@\n", self.writeBuffer, msg];
+    self.writeBuffer = [NSString stringWithFormat:@"%@%@;\n", self.writeBuffer, msg];
 }
 
 - (void)writeTraceInfo:(NSArray *)traceInfo
