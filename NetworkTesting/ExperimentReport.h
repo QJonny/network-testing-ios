@@ -10,7 +10,7 @@
 #define NetworkTesting_ExperimentReport_h
 
 #import <Foundation/Foundation.h>
-#import "EmailSender.h"
+#import "LogglyLogger.h"
 
 
 @interface ExperimentReport: NSObject

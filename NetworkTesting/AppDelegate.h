@@ -10,6 +10,9 @@
 #import "MHUnicastSocket.h"
 #import "MHMulticastSocket.h"
 
+#import "LogglyLogger.h"
+#import "LogglyFormatter.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

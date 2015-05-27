@@ -69,7 +69,8 @@
         }
     }
     
-    [[EmailSender getSingleton] sendEmailWithBody:self.writeBuffer withExpNo:self.expNo];
+    NSString* log = [NSString stringWithFormat:@"{\"exp\":\"%d\", \"message\":\"%@\"}", self.expNo, self.writeBuffer];
+    DDLogVerbose(log);
 }
 
 

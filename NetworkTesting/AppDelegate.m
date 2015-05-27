@@ -31,6 +31,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    LogglyLogger *logglyLogger = [[LogglyLogger alloc] init];
+    [logglyLogger setLogFormatter:[[LogglyFormatter alloc] init]];
+    logglyLogger.logglyKey = @"518a7232-c77e-4da1-ac70-03d1d0ede845";
+    
+    // Set posting interval every 15 seconds, just for testing this out, but the default value of 600 seconds is better in apps
+    // that normally don't access the network very often. When the user suspends the app, the logs will always be posted.
+    logglyLogger.saveInterval = 15;
+    
+    [DDLog addLogger:logglyLogger];
+    
     return YES;
 }
 

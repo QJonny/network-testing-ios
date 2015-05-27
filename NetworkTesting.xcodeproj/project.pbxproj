@@ -8,14 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B01D58A1B0E3414009A4652 /* ExperimentReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B01D5891B0E3414009A4652 /* ExperimentReport.m */; };
-		2B01D58D1B0F5EEA009A4652 /* EmailSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B01D58C1B0F5EEA009A4652 /* EmailSender.m */; };
 		2B2586A41B03A8E300EB563E /* MHUnicastTransportConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2586A31B03A8E300EB563E /* MHUnicastTransportConnection.m */; };
-		2B762F4E1B0A7A6C00301C82 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B762F4D1B0A7A6C00301C82 /* CFNetwork.framework */; };
-		2B762F5A1B0A7BCC00301C82 /* Base64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F511B0A7BCC00301C82 /* Base64Transcoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2B762F5B1B0A7BCC00301C82 /* HSK_CFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F531B0A7BCC00301C82 /* HSK_CFUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2B762F5C1B0A7BCC00301C82 /* NSData+Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F551B0A7BCC00301C82 /* NSData+Base64Additions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2B762F5D1B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F571B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2B762F5E1B0A7BCC00301C82 /* SKPSMTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F591B0A7BCC00301C82 /* SKPSMTPMessage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2B762F611B0CB81400301C82 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F601B0CB81400301C82 /* NetworkManager.m */; };
 		2BE1B1FC1AFA68F000EA8CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B1FB1AFA68F000EA8CE3 /* main.m */; };
 		2BE1B1FF1AFA68F000EA8CE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B1FE1AFA68F000EA8CE3 /* AppDelegate.m */; };
@@ -44,6 +37,7 @@
 		2BE1B2571AFA696E00EA8CE3 /* MHUnicastRoutingProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2431AFA696E00EA8CE3 /* MHUnicastRoutingProtocol.m */; };
 		2BE1B2581AFA696E00EA8CE3 /* MHUnicastSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2451AFA696E00EA8CE3 /* MHUnicastSocket.m */; };
 		2BE1B25A1AFA69CC00EA8CE3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE1B2591AFA69CC00EA8CE3 /* CoreLocation.framework */; };
+		9359A48334BC856E3D262689 /* libPods-NetworkTesting.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 611DF128794F255DD8BD5C02 /* libPods-NetworkTesting.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,23 +51,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0681F3D257A9224752BDA22A /* Pods-NetworkTesting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkTesting.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkTesting/Pods-NetworkTesting.release.xcconfig"; sourceTree = "<group>"; };
 		2B01D5881B0E33FE009A4652 /* ExperimentReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExperimentReport.h; sourceTree = "<group>"; };
 		2B01D5891B0E3414009A4652 /* ExperimentReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperimentReport.m; sourceTree = "<group>"; };
-		2B01D58B1B0F5EDA009A4652 /* EmailSender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmailSender.h; sourceTree = "<group>"; };
-		2B01D58C1B0F5EEA009A4652 /* EmailSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSender.m; sourceTree = "<group>"; };
 		2B2586A21B03A8E300EB563E /* MHUnicastTransportConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHUnicastTransportConnection.h; path = "../multihop-lib-ios/Multihop/MHUnicastTransportConnection.h"; sourceTree = "<group>"; };
 		2B2586A31B03A8E300EB563E /* MHUnicastTransportConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHUnicastTransportConnection.m; path = "../multihop-lib-ios/Multihop/MHUnicastTransportConnection.m"; sourceTree = "<group>"; };
-		2B762F4D1B0A7A6C00301C82 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		2B762F501B0A7BCC00301C82 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
-		2B762F511B0A7BCC00301C82 /* Base64Transcoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Transcoder.m; sourceTree = "<group>"; };
-		2B762F521B0A7BCC00301C82 /* HSK_CFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSK_CFUtilities.h; sourceTree = "<group>"; };
-		2B762F531B0A7BCC00301C82 /* HSK_CFUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSK_CFUtilities.m; sourceTree = "<group>"; };
-		2B762F541B0A7BCC00301C82 /* NSData+Base64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64Additions.h"; sourceTree = "<group>"; };
-		2B762F551B0A7BCC00301C82 /* NSData+Base64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64Additions.m"; sourceTree = "<group>"; };
-		2B762F561B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSStream+SKPSMTPExtensions.h"; sourceTree = "<group>"; };
-		2B762F571B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSStream+SKPSMTPExtensions.m"; sourceTree = "<group>"; };
-		2B762F581B0A7BCC00301C82 /* SKPSMTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPSMTPMessage.h; sourceTree = "<group>"; };
-		2B762F591B0A7BCC00301C82 /* SKPSMTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPSMTPMessage.m; sourceTree = "<group>"; };
 		2B762F5F1B0CB7FD00301C82 /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		2B762F601B0CB81400301C82 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		2BE1B1F61AFA68F000EA8CE3 /* NetworkTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +110,8 @@
 		2BE1B2441AFA696E00EA8CE3 /* MHUnicastSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHUnicastSocket.h; path = "../multihop-lib-ios/Multihop/MHUnicastSocket.h"; sourceTree = "<group>"; };
 		2BE1B2451AFA696E00EA8CE3 /* MHUnicastSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHUnicastSocket.m; path = "../multihop-lib-ios/Multihop/MHUnicastSocket.m"; sourceTree = "<group>"; };
 		2BE1B2591AFA69CC00EA8CE3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		611DF128794F255DD8BD5C02 /* libPods-NetworkTesting.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NetworkTesting.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D933507ECAF3B74C71EBEC85 /* Pods-NetworkTesting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkTesting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkTesting/Pods-NetworkTesting.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,8 +119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B762F4E1B0A7A6C00301C82 /* CFNetwork.framework in Frameworks */,
 				2BE1B25A1AFA69CC00EA8CE3 /* CoreLocation.framework in Frameworks */,
+				9359A48334BC856E3D262689 /* libPods-NetworkTesting.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,34 +134,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B762F4F1B0A7BCC00301C82 /* SMTPLibrary */ = {
-			isa = PBXGroup;
-			children = (
-				2B762F501B0A7BCC00301C82 /* Base64Transcoder.h */,
-				2B762F511B0A7BCC00301C82 /* Base64Transcoder.m */,
-				2B762F521B0A7BCC00301C82 /* HSK_CFUtilities.h */,
-				2B762F531B0A7BCC00301C82 /* HSK_CFUtilities.m */,
-				2B762F541B0A7BCC00301C82 /* NSData+Base64Additions.h */,
-				2B762F551B0A7BCC00301C82 /* NSData+Base64Additions.m */,
-				2B762F561B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.h */,
-				2B762F571B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.m */,
-				2B762F581B0A7BCC00301C82 /* SKPSMTPMessage.h */,
-				2B762F591B0A7BCC00301C82 /* SKPSMTPMessage.m */,
-			);
-			name = SMTPLibrary;
-			path = NetworkTesting/SMTPLibrary;
-			sourceTree = "<group>";
-		};
 		2BE1B1ED1AFA68F000EA8CE3 = {
 			isa = PBXGroup;
 			children = (
-				2B762F4F1B0A7BCC00301C82 /* SMTPLibrary */,
-				2B762F4D1B0A7A6C00301C82 /* CFNetwork.framework */,
 				2BE1B2591AFA69CC00EA8CE3 /* CoreLocation.framework */,
 				2BE1B21F1AFA693B00EA8CE3 /* Multihop */,
 				2BE1B1F81AFA68F000EA8CE3 /* NetworkTesting */,
 				2BE1B2121AFA68F000EA8CE3 /* NetworkTestingTests */,
 				2BE1B1F71AFA68F000EA8CE3 /* Products */,
+				4DDD242C7BEF0FDE7636CB66 /* Pods */,
+				D8F5289F79788679B8D88DBB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -204,8 +170,6 @@
 				2B762F601B0CB81400301C82 /* NetworkManager.m */,
 				2B01D5881B0E33FE009A4652 /* ExperimentReport.h */,
 				2B01D5891B0E3414009A4652 /* ExperimentReport.m */,
-				2B01D58B1B0F5EDA009A4652 /* EmailSender.h */,
-				2B01D58C1B0F5EEA009A4652 /* EmailSender.m */,
 				2BE1B1F91AFA68F000EA8CE3 /* Supporting Files */,
 			);
 			path = NetworkTesting;
@@ -284,6 +248,23 @@
 			name = Multihop;
 			sourceTree = "<group>";
 		};
+		4DDD242C7BEF0FDE7636CB66 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D933507ECAF3B74C71EBEC85 /* Pods-NetworkTesting.debug.xcconfig */,
+				0681F3D257A9224752BDA22A /* Pods-NetworkTesting.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D8F5289F79788679B8D88DBB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				611DF128794F255DD8BD5C02 /* libPods-NetworkTesting.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -291,9 +272,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2BE1B2191AFA68F000EA8CE3 /* Build configuration list for PBXNativeTarget "NetworkTesting" */;
 			buildPhases = (
+				411ED33B2C1AF750FD363D3E /* Check Pods Manifest.lock */,
 				2BE1B1F21AFA68F000EA8CE3 /* Sources */,
 				2BE1B1F31AFA68F000EA8CE3 /* Frameworks */,
 				2BE1B1F41AFA68F000EA8CE3 /* Resources */,
+				8898327B51731AD4A647E902 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -384,6 +367,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		411ED33B2C1AF750FD363D3E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8898327B51731AD4A647E902 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NetworkTesting/Pods-NetworkTesting-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2BE1B1F21AFA68F000EA8CE3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -393,7 +409,6 @@
 				2B762F611B0CB81400301C82 /* NetworkManager.m in Sources */,
 				2BE1B2571AFA696E00EA8CE3 /* MHUnicastRoutingProtocol.m in Sources */,
 				2BE1B2021AFA68F000EA8CE3 /* ViewController.m in Sources */,
-				2B762F5C1B0A7BCC00301C82 /* NSData+Base64Additions.m in Sources */,
 				2BE1B2501AFA696E00EA8CE3 /* MHMulticastController.m in Sources */,
 				2B01D58A1B0E3414009A4652 /* ExperimentReport.m in Sources */,
 				2BE1B2531AFA696E00EA8CE3 /* MHMultipeerWrapper.m in Sources */,
@@ -403,19 +418,14 @@
 				2BE1B1FF1AFA68F000EA8CE3 /* AppDelegate.m in Sources */,
 				2BE1B2561AFA696E00EA8CE3 /* MHUnicastController.m in Sources */,
 				2BE1B2491AFA696E00EA8CE3 /* MHComputation.m in Sources */,
-				2B762F5D1B0A7BCC00301C82 /* NSStream+SKPSMTPExtensions.m in Sources */,
 				2BE1B2551AFA696E00EA8CE3 /* MHPeer.m in Sources */,
 				2BE1B1FC1AFA68F000EA8CE3 /* main.m in Sources */,
 				2BE1B24F1AFA696E00EA8CE3 /* MHMessage.m in Sources */,
 				2B2586A41B03A8E300EB563E /* MHUnicastTransportConnection.m in Sources */,
-				2B762F5A1B0A7BCC00301C82 /* Base64Transcoder.m in Sources */,
 				2BE1B2461AFA696E00EA8CE3 /* MH6ShotsProtocol.m in Sources */,
 				2BE1B2471AFA696E00EA8CE3 /* MH6ShotsSchedule.m in Sources */,
 				2BE1B24E1AFA696E00EA8CE3 /* MHLocationManager.m in Sources */,
 				2BE1B24D1AFA696E00EA8CE3 /* MHFloodingProtocol.m in Sources */,
-				2B762F5E1B0A7BCC00301C82 /* SKPSMTPMessage.m in Sources */,
-				2B01D58D1B0F5EEA009A4652 /* EmailSender.m in Sources */,
-				2B762F5B1B0A7BCC00301C82 /* HSK_CFUtilities.m in Sources */,
 				2BE1B24B1AFA696E00EA8CE3 /* MHConnectionsHandler.m in Sources */,
 				2BE1B24A1AFA696E00EA8CE3 /* MHConnectionBuffer.m in Sources */,
 				2BE1B2481AFA696E00EA8CE3 /* MH6ShotsScheduler.m in Sources */,
@@ -541,6 +551,7 @@
 		};
 		2BE1B21A1AFA68F000EA8CE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D933507ECAF3B74C71EBEC85 /* Pods-NetworkTesting.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NetworkTesting/Info.plist;
@@ -551,6 +562,7 @@
 		};
 		2BE1B21B1AFA68F000EA8CE3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0681F3D257A9224752BDA22A /* Pods-NetworkTesting.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = NetworkTesting/Info.plist;

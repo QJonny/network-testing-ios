@@ -175,14 +175,14 @@
     if (self.isFlooding)
     {
         NSError *error;
-        [self.uSocket sendMessage:[@"flooding message" dataUsingEncoding:NSUTF8StringEncoding]
+        [self.uSocket sendMessage:[[NSString stringWithFormat:@"%@", [UIDevice currentDevice].name] dataUsingEncoding:NSUTF8StringEncoding]
                    toDestinations:self.peers
                             error:&error];
     }
     else
     {
         NSError *error;
-        [self.mSocket sendMessage:[@"6shots message" dataUsingEncoding:NSUTF8StringEncoding]
+        [self.mSocket sendMessage:[[NSString stringWithFormat:@"%@", [UIDevice currentDevice].name] dataUsingEncoding:NSUTF8StringEncoding]
                    toDestinations:[[NSArray alloc] initWithObjects:GROUP_RCV, nil]
                             error:&error];
     }
@@ -254,9 +254,10 @@
     {
         self.nbReceived++;
     
-        [[self currentExpReport] writeTraceInfo:traceInfo];
+        NSString *displayName = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
-        //[self writeLine:[NSString stringWithFormat:@"Received packet from peer %@", peer]];
+        [[self currentExpReport] writeTraceInfo:traceInfo];
+        [self writeLine:[NSString stringWithFormat:@"Received packet from %@", displayName]];
     }
 }
 
@@ -307,8 +308,10 @@
 {
     self.nbReceived++;
     
+    NSString *displayName = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
     [[self currentExpReport] writeTraceInfo:traceInfo];
-    //[self writeLine:[NSString stringWithFormat:@"Received packet from peer %@", peer]];
+    [self writeLine:[NSString stringWithFormat:@"Received packet from %@", displayName]];
 }
 
 
