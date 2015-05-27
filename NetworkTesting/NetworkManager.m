@@ -53,6 +53,7 @@
         
         [MHDiagnostics getSingleton].useTraceInfo = YES;
         [MHDiagnostics getSingleton].useRetransmissionInfo = YES;
+        [MHDiagnostics getSingleton].useNetworkLayerInfoCallbacks = YES;
     }
     
     return self;
@@ -281,8 +282,12 @@
     [self writeLine: @"Failed to connect..."];
 }
 
-
-
+- (void)mhUnicastSocket:(MHUnicastSocket *)mhUnicastSocket
+          forwardPacket:(NSString *)info
+             fromSource:(NSString *)peer
+{
+    [self writeLine:@"Packet forwarded"];
+}
 
 
 
@@ -314,7 +319,11 @@
     [self writeLine:[NSString stringWithFormat:@"Received packet from %@", displayName]];
 }
 
-
-
+- (void)mhMulticastSocket:(MHMulticastSocket *)mhMulticastSocket
+            forwardPacket:(NSString *)info
+               fromSource:(NSString *)peer
+{
+    [self writeLine:@"Packet forwarded"];
+}
 
 @end
