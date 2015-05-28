@@ -23,7 +23,7 @@
 @property (nonatomic, strong) MHUnicastSocket *uSocket;
 @property (nonatomic, strong) MHMulticastSocket *mSocket;
 
-@property (nonatomic, strong) NSMutableArray *peers;
+@property (nonatomic, strong) NSMutableDictionary *peers;
 @property (nonatomic) int nbBroadcasts;
 @property (nonatomic) int nbReceived;
 
@@ -48,7 +48,7 @@
         self.failed = NO;
         self.expReports = [[NSMutableArray alloc] init];
         
-        self.peers = [[NSMutableArray alloc] init];
+        self.peers = [[NSMutableDictionary alloc] init];
         self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         
         [MHDiagnostics getSingleton].useTraceInfo = YES;
@@ -177,7 +177,7 @@
     {
         NSError *error;
         [self.uSocket sendMessage:[[NSString stringWithFormat:@"%@", [UIDevice currentDevice].name] dataUsingEncoding:NSUTF8StringEncoding]
-                   toDestinations:self.peers
+                   toDestinations:[self.peers allKeys]
                             error:&error];
     }
     else
@@ -259,6 +259,8 @@
         
         [[self currentExpReport] writeTraceInfo:traceInfo];
         [self writeLine:[NSString stringWithFormat:@"Received packet from %@", displayName]];
+        
+        [self.peers setObject:displayName forKey:peer];
     }
 }
 
@@ -266,7 +268,7 @@
            isDiscovered:(NSString *)info
                    peer:(NSString *)peer
             displayName:(NSString *)displayName{
-    [self.peers addObject:peer];
+    [self.peers setObject:displayName forKey:peer];
     
     [self writeLine:[NSString stringWithFormat:@"Discovered peer %@", displayName]];
 }
@@ -274,8 +276,8 @@
 - (void)mhUnicastSocket:(MHUnicastSocket *)mhUnicastSocket
         hasDisconnected:(NSString *)info
                    peer:(NSString *)peer{
-    [self.peers removeObject:peer];
-    [self writeLine:[NSString stringWithFormat:@"Peer %@ has disconnected", peer]];
+    [self.peers removeObjectForKey:peer];
+    [self writeLine:[NSString stringWithFormat:@"Peer %@ has disconnected", [self displayNameFromPeer:peer]]];
 }
 
 - (void)mhUnicastSocket:(MHUnicastSocket *)mhUnicastSocket
@@ -287,7 +289,7 @@
           forwardPacket:(NSString *)info
              fromSource:(NSString *)peer
 {
-    [self writeLine:@"Packet forwarded"];
+    [self writeLine:[NSString stringWithFormat:@"Packet from peer %@ forwarded", [self displayNameFromPeer:peer]]];
 }
 
 
@@ -299,6 +301,7 @@
                     group:(NSString *)group
 {
     [self writeLine:[NSString stringWithFormat:@"Peer %@ joined a group", peer]];
+    [self.peers setObject:@"" forKey:peer];
 }
 
 - (void)mhMulticastSocket:(MHMulticastSocket *)mhMulticastSocket
@@ -318,13 +321,29 @@
     
     [[self currentExpReport] writeTraceInfo:traceInfo];
     [self writeLine:[NSString stringWithFormat:@"Received packet from %@", displayName]];
+    
+    [self.peers setObject:displayName forKey:peer];
 }
 
 - (void)mhMulticastSocket:(MHMulticastSocket *)mhMulticastSocket
             forwardPacket:(NSString *)info
                fromSource:(NSString *)peer
 {
-    [self writeLine:@"Packet forwarded"];
+    [self writeLine:[NSString stringWithFormat:@"Packet from peer %@ forwarded", [self displayNameFromPeer:peer]]];
+}
+
+
+#pragma mark - Display name helper function
+- (NSString *)displayNameFromPeer:(NSString *)peer
+{
+    NSString *displayName = [self.peers objectForKey:peer];
+    
+    if ([displayName isEqualToString:@""])
+    {
+        return peer;
+    }
+    
+    return displayName;
 }
 
 @end
