@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2B01D58A1B0E3414009A4652 /* ExperimentReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B01D5891B0E3414009A4652 /* ExperimentReport.m */; };
-		2B2586A41B03A8E300EB563E /* MHUnicastTransportConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2586A31B03A8E300EB563E /* MHUnicastTransportConnection.m */; };
 		2B762F611B0CB81400301C82 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F601B0CB81400301C82 /* NetworkManager.m */; };
 		2BE1B1FC1AFA68F000EA8CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B1FB1AFA68F000EA8CE3 /* main.m */; };
 		2BE1B1FF1AFA68F000EA8CE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B1FE1AFA68F000EA8CE3 /* AppDelegate.m */; };
@@ -37,6 +36,9 @@
 		2BE1B2571AFA696E00EA8CE3 /* MHUnicastRoutingProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2431AFA696E00EA8CE3 /* MHUnicastRoutingProtocol.m */; };
 		2BE1B2581AFA696E00EA8CE3 /* MHUnicastSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2451AFA696E00EA8CE3 /* MHUnicastSocket.m */; };
 		2BE1B25A1AFA69CC00EA8CE3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BE1B2591AFA69CC00EA8CE3 /* CoreLocation.framework */; };
+		2BE24C9C1B1DFFB200472AC2 /* MHController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE24C971B1DFFB200472AC2 /* MHController.m */; };
+		2BE24C9D1B1DFFB200472AC2 /* MHRoutingProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE24C991B1DFFB200472AC2 /* MHRoutingProtocol.m */; };
+		2BE24C9E1B1DFFB200472AC2 /* MHSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE24C9B1B1DFFB200472AC2 /* MHSocket.m */; };
 		9359A48334BC856E3D262689 /* libPods-NetworkTesting.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 611DF128794F255DD8BD5C02 /* libPods-NetworkTesting.a */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +56,6 @@
 		0681F3D257A9224752BDA22A /* Pods-NetworkTesting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkTesting.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkTesting/Pods-NetworkTesting.release.xcconfig"; sourceTree = "<group>"; };
 		2B01D5881B0E33FE009A4652 /* ExperimentReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExperimentReport.h; sourceTree = "<group>"; };
 		2B01D5891B0E3414009A4652 /* ExperimentReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperimentReport.m; sourceTree = "<group>"; };
-		2B2586A21B03A8E300EB563E /* MHUnicastTransportConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHUnicastTransportConnection.h; path = "../multihop-lib-ios/Multihop/MHUnicastTransportConnection.h"; sourceTree = "<group>"; };
-		2B2586A31B03A8E300EB563E /* MHUnicastTransportConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHUnicastTransportConnection.m; path = "../multihop-lib-ios/Multihop/MHUnicastTransportConnection.m"; sourceTree = "<group>"; };
 		2B762F5F1B0CB7FD00301C82 /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		2B762F601B0CB81400301C82 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		2BE1B1F61AFA68F000EA8CE3 /* NetworkTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +110,12 @@
 		2BE1B2441AFA696E00EA8CE3 /* MHUnicastSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHUnicastSocket.h; path = "../multihop-lib-ios/Multihop/MHUnicastSocket.h"; sourceTree = "<group>"; };
 		2BE1B2451AFA696E00EA8CE3 /* MHUnicastSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHUnicastSocket.m; path = "../multihop-lib-ios/Multihop/MHUnicastSocket.m"; sourceTree = "<group>"; };
 		2BE1B2591AFA69CC00EA8CE3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		2BE24C961B1DFFB200472AC2 /* MHController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHController.h; path = "../multihop-lib-ios/Multihop/MHController.h"; sourceTree = "<group>"; };
+		2BE24C971B1DFFB200472AC2 /* MHController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHController.m; path = "../multihop-lib-ios/Multihop/MHController.m"; sourceTree = "<group>"; };
+		2BE24C981B1DFFB200472AC2 /* MHRoutingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHRoutingProtocol.h; path = "../multihop-lib-ios/Multihop/MHRoutingProtocol.h"; sourceTree = "<group>"; };
+		2BE24C991B1DFFB200472AC2 /* MHRoutingProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHRoutingProtocol.m; path = "../multihop-lib-ios/Multihop/MHRoutingProtocol.m"; sourceTree = "<group>"; };
+		2BE24C9A1B1DFFB200472AC2 /* MHSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHSocket.h; path = "../multihop-lib-ios/Multihop/MHSocket.h"; sourceTree = "<group>"; };
+		2BE24C9B1B1DFFB200472AC2 /* MHSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHSocket.m; path = "../multihop-lib-ios/Multihop/MHSocket.m"; sourceTree = "<group>"; };
 		611DF128794F255DD8BD5C02 /* libPods-NetworkTesting.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NetworkTesting.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D933507ECAF3B74C71EBEC85 /* Pods-NetworkTesting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkTesting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkTesting/Pods-NetworkTesting.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -204,8 +210,12 @@
 		2BE1B21F1AFA693B00EA8CE3 /* Multihop */ = {
 			isa = PBXGroup;
 			children = (
-				2B2586A21B03A8E300EB563E /* MHUnicastTransportConnection.h */,
-				2B2586A31B03A8E300EB563E /* MHUnicastTransportConnection.m */,
+				2BE24C961B1DFFB200472AC2 /* MHController.h */,
+				2BE24C971B1DFFB200472AC2 /* MHController.m */,
+				2BE24C981B1DFFB200472AC2 /* MHRoutingProtocol.h */,
+				2BE24C991B1DFFB200472AC2 /* MHRoutingProtocol.m */,
+				2BE24C9A1B1DFFB200472AC2 /* MHSocket.h */,
+				2BE24C9B1B1DFFB200472AC2 /* MHSocket.m */,
 				2BE1B2201AFA696E00EA8CE3 /* MH6ShotsProtocol.h */,
 				2BE1B2211AFA696E00EA8CE3 /* MH6ShotsProtocol.m */,
 				2BE1B2221AFA696E00EA8CE3 /* MH6ShotsSchedule.h */,
@@ -415,14 +425,16 @@
 				2BE1B2531AFA696E00EA8CE3 /* MHMultipeerWrapper.m in Sources */,
 				2BE1B2521AFA696E00EA8CE3 /* MHMulticastSocket.m in Sources */,
 				2BE1B2511AFA696E00EA8CE3 /* MHMulticastRoutingProtocol.m in Sources */,
+				2BE24C9D1B1DFFB200472AC2 /* MHRoutingProtocol.m in Sources */,
 				2BE1B24C1AFA696E00EA8CE3 /* MHDiagnostics.m in Sources */,
 				2BE1B1FF1AFA68F000EA8CE3 /* AppDelegate.m in Sources */,
 				2BE1B2561AFA696E00EA8CE3 /* MHUnicastController.m in Sources */,
 				2BE1B2491AFA696E00EA8CE3 /* MHComputation.m in Sources */,
+				2BE24C9C1B1DFFB200472AC2 /* MHController.m in Sources */,
 				2BE1B2551AFA696E00EA8CE3 /* MHPeer.m in Sources */,
 				2BE1B1FC1AFA68F000EA8CE3 /* main.m in Sources */,
 				2BE1B24F1AFA696E00EA8CE3 /* MHMessage.m in Sources */,
-				2B2586A41B03A8E300EB563E /* MHUnicastTransportConnection.m in Sources */,
+				2BE24C9E1B1DFFB200472AC2 /* MHSocket.m in Sources */,
 				2BE1B2461AFA696E00EA8CE3 /* MH6ShotsProtocol.m in Sources */,
 				2BE1B2471AFA696E00EA8CE3 /* MH6ShotsSchedule.m in Sources */,
 				2BE1B24E1AFA696E00EA8CE3 /* MHLocationManager.m in Sources */,

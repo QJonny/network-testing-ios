@@ -244,12 +244,26 @@
 }
 
 
-#pragma mark - MHUnicastSocketDelegate methods
 
-- (void)mhUnicastSocket:(MHUnicastSocket *)mhUnicastSocket
-      didReceiveMessage:(NSData *)data
-               fromPeer:(NSString *)peer
-          withTraceInfo:(NSArray *)traceInfo
+#pragma mark - MHSocketDelegate methods
+- (void)mhSocket:(MHSocket *)mhSocket
+ failedToConnect:(NSError *)error{
+    [self writeLine: @"Failed to connect..."];
+}
+
+
+- (void)mhSocket:(MHSocket *)mhSocket
+   forwardPacket:(NSString *)info
+      fromSource:(NSString *)peer
+{
+    [self writeLine:[NSString stringWithFormat:@"Packet from peer %@ forwarded", [self displayNameFromPeer:peer]]];
+}
+
+
+- (void)mhSocket:(MHSocket *)mhSocket
+didReceiveMessage:(NSData *)data
+        fromPeer:(NSString *)peer
+   withTraceInfo:(NSArray *)traceInfo
 {
     if (self.rcvPackets)
     {
@@ -264,6 +278,9 @@
     }
 }
 
+
+
+#pragma mark - MHUnicastSocketDelegate methods
 - (void)mhUnicastSocket:(MHUnicastSocket *)mhUnicastSocket
            isDiscovered:(NSString *)info
                    peer:(NSString *)peer
@@ -280,18 +297,6 @@
     [self.peers removeObjectForKey:peer];
 }
 
-- (void)mhUnicastSocket:(MHUnicastSocket *)mhUnicastSocket
-        failedToConnect:(NSError *)error{
-    [self writeLine: @"Failed to connect..."];
-}
-
-- (void)mhUnicastSocket:(MHUnicastSocket *)mhUnicastSocket
-          forwardPacket:(NSString *)info
-             fromSource:(NSString *)peer
-{
-    [self writeLine:[NSString stringWithFormat:@"Packet from peer %@ forwarded", [self displayNameFromPeer:peer]]];
-}
-
 
 
 #pragma mark - MulticastSocketDelegate methods
@@ -304,33 +309,8 @@
     [self.peers setObject:@"" forKey:peer];
 }
 
-- (void)mhMulticastSocket:(MHMulticastSocket *)mhMulticastSocket
-          failedToConnect:(NSError *)error
-{
-    [self writeLine: @"Failed to connect..."];
-}
 
-- (void)mhMulticastSocket:(MHMulticastSocket *)mhMulticastSocket
-        didReceiveMessage:(NSData *)data
-                 fromPeer:(NSString *)peer
-            withTraceInfo:(NSArray *)traceInfo
-{
-    self.nbReceived++;
-    
-    NSString *displayName = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    [[self currentExpReport] writeTraceInfo:traceInfo];
-    [self writeLine:[NSString stringWithFormat:@"Received packet from %@", displayName]];
-    
-    [self.peers setObject:displayName forKey:peer];
-}
 
-- (void)mhMulticastSocket:(MHMulticastSocket *)mhMulticastSocket
-            forwardPacket:(NSString *)info
-               fromSource:(NSString *)peer
-{
-    [self writeLine:[NSString stringWithFormat:@"Packet from peer %@ forwarded", [self displayNameFromPeer:peer]]];
-}
 
 
 #pragma mark - Display name helper function
