@@ -47,6 +47,9 @@
 @required
 - (void)networkManager:(NetworkManager *)networkManager
    writeLine:(NSString *)msg;
+
+- (void)networkManager:(NetworkManager *)networkManager
+   updateNeighbourhood:(NSArray *)neighbours;
 @end
 
 #endif

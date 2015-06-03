@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -120,6 +120,18 @@
                                     <action selector="sendResultsPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="QkL-0i-XOL"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eak-WE-zap">
+                                <rect key="frame" x="160" y="250" width="51" height="31"/>
+                                <connections>
+                                    <action selector="displayValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="VrI-vp-rDd"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Log" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11p-cG-RVc">
+                                <rect key="frame" x="217" y="252" width="135" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -139,6 +151,8 @@
                         <outlet property="algLabel" destination="w40-g2-yaa" id="h6p-eA-QgR"/>
                         <outlet property="algSwitch" destination="oM4-7j-dud" id="oDc-o4-idp"/>
                         <outlet property="broadcastButton" destination="AMZ-Jx-NLy" id="gdl-Ao-Ycz"/>
+                        <outlet property="displayLabel" destination="11p-cG-RVc" id="PQU-BJ-nfQ"/>
+                        <outlet property="displaySwitch" destination="eak-WE-zap" id="7HX-mu-n4M"/>
                         <outlet property="endButton" destination="VIz-0j-PTT" id="wsj-oG-9OU"/>
                         <outlet property="experimentNoLabel" destination="DiM-PY-rPV" id="WTO-cf-uzO"/>
                         <outlet property="experimentNoModifier" destination="LcV-UA-uFi" id="rOC-QC-VUt"/>

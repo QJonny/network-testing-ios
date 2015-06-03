@@ -24,6 +24,7 @@
 @property (nonatomic, strong) MHMulticastSocket *mSocket;
 
 @property (nonatomic, strong) NSMutableDictionary *peers;
+@property (nonatomic, strong) NSMutableArray *neighbourPeers;
 @property (nonatomic) int nbBroadcasts;
 @property (nonatomic) int nbReceived;
 
@@ -49,10 +50,12 @@
         self.expReports = [[NSMutableArray alloc] init];
         
         self.peers = [[NSMutableDictionary alloc] init];
+        self.neighbourPeers = [[NSMutableArray alloc] init];
         self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         
         [MHDiagnostics getSingleton].useTraceInfo = YES;
         [MHDiagnostics getSingleton].useRetransmissionInfo = YES;
+        [MHDiagnostics getSingleton].useNeighbourInformartion = YES;
         [MHDiagnostics getSingleton].useNetworkLayerInfoCallbacks = YES;
     }
     
@@ -67,6 +70,9 @@
     
     [self.peers removeAllObjects];
     self.peers = nil;
+    
+    [self.neighbourPeers removeAllObjects];
+    self.neighbourPeers = nil;
 }
 
 
@@ -279,6 +285,32 @@ didReceiveMessage:(NSData *)data
 }
 
 
+- (void)mhSocket:(MHSocket *)mhSocket
+neighbourConnected:(NSString *)info
+            peer:(NSString *)peer
+     displayName:(NSString *)displayName
+{
+    if(![self.neighbourPeers containsObject:peer])
+    {
+        [self.neighbourPeers addObject:peer];
+    }
+    [self.peers setObject:displayName forKey:peer];
+    
+    [self.delegate networkManager:self updateNeighbourhood:[self displayNamesFromPeerArray:self.neighbourPeers]];
+}
+
+- (void)mhSocket:(MHSocket *)mhSocket
+neighbourDisconnected:(NSString *)info
+            peer:(NSString *)peer
+{
+    if([self.neighbourPeers containsObject:peer])
+    {
+        [self.neighbourPeers removeObject:peer];
+    }
+    
+    [self.delegate networkManager:self updateNeighbourhood:[self displayNamesFromPeerArray:self.neighbourPeers]];
+}
+
 
 #pragma mark - MHUnicastSocketDelegate methods
 - (void)mhUnicastSocket:(MHUnicastSocket *)mhUnicastSocket
@@ -322,8 +354,26 @@ didReceiveMessage:(NSData *)data
     {
         return peer;
     }
+    else if(displayName == nil)
+    {
+        return @"unknown";
+    }
     
     return displayName;
+}
+
+- (NSArray *)displayNamesFromPeerArray:(NSArray *)peers
+{
+    NSMutableArray *names = [[NSMutableArray alloc] init];
+    
+    for (id peer in peers)
+    {
+        NSString *name = [self displayNameFromPeer:peer];
+        
+        [names addObject:name];
+    }
+    
+    return names;
 }
 
 @end

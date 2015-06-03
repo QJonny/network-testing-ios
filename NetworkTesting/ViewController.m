@@ -28,7 +28,14 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *broadcastButton;
 
+@property (weak, nonatomic) IBOutlet UISwitch *displaySwitch;
+@property (weak, nonatomic) IBOutlet UILabel *displayLabel;
+
 @property (nonatomic, strong) NetworkManager *networkManager;
+
+@property (nonatomic, strong) NSString *bufferLog;
+@property (nonatomic, strong) NSString *bufferNeighbourhood;
+
 
 @end
 
@@ -42,11 +49,17 @@
     self.endButton.enabled = NO;
     self.nodeFailureSwitch.on = NO;
     
+    self.displaySwitch.on = YES;
+    self.displaySwitch.enabled = NO;
+    
     self.sendResultsButton.enabled = YES;
     self.experimentNoModifier.enabled = YES;
     
     self.networkManager = [[NetworkManager alloc] init];
     self.networkManager.delegate = self;
+    
+    self.bufferLog = @"";
+    self.bufferNeighbourhood = @"";
     
     [self.experimentNoLabel setText:[NSString stringWithFormat:@"Exp. no: %d", (int) self.experimentNoModifier.value]];
 }
@@ -77,7 +90,10 @@
     self.broadcastButton.enabled = YES;
     self.startButton.enabled = NO;
     self.endButton.enabled = YES;
-    [self.logTextView setText:@""];
+    self.displaySwitch.enabled = YES;
+    self.bufferLog = @"";
+    self.bufferNeighbourhood = @"";
+    [self updateDisplayText];
     
     [self.networkManager startWithExpNo:(int) self.experimentNoModifier.value withFlooding:self.algSwitch.on withNodeFailure:self.nodeFailureSwitch.on withReceive:self.rcvPacketsSwitch.on];
 }
@@ -96,6 +112,8 @@
     self.startButton.enabled = YES;
     self.endButton.enabled = NO;
     
+    self.displaySwitch.enabled = NO;
+    
     [self.networkManager end];
 }
 
@@ -113,10 +131,50 @@
     self.sendResultsButton.enabled = NO;
 }
 
+- (IBAction)displayValueChanged:(id)sender {
+    if (self.displaySwitch.on)
+    {
+        [self.displayLabel setText:@"Log"];
+    }
+    else
+    {
+        [self.displayLabel setText:@"Neighbourhood"];
+    }
+
+    [self updateDisplayText];
+}
+
 #pragma mark - NetworkManagerDelegate methods
 - (void)networkManager:(NetworkManager *)networkManager writeLine:(NSString *)msg
 {
-    [self.logTextView setText:[NSString stringWithFormat:@"%@%@\n", self.logTextView.text, msg]];
+    self.bufferLog = [NSString stringWithFormat:@"%@%@\n", self.bufferLog, msg];
+
+    [self updateDisplayText];
+}
+
+- (void)networkManager:(NetworkManager *)networkManager updateNeighbourhood:(NSArray *)neighbours
+{
+    self.bufferNeighbourhood = @"";
+    
+    for (id name in neighbours)
+    {
+        self.bufferNeighbourhood = [NSString stringWithFormat:@"%@%@\n", self.bufferNeighbourhood, name];
+    }
+    
+    [self updateDisplayText];
+}
+
+#pragma mark - Text display helper methods
+- (void)updateDisplayText
+{
+    if(self.displaySwitch.on)
+    {
+        [self.logTextView setText:self.bufferLog];
+    }
+    else
+    {
+        [self.logTextView setText:self.bufferNeighbourhood];
+    }
     
     if(self.logTextView.text.length > 0)
     {
@@ -124,5 +182,4 @@
         [self.logTextView scrollRangeToVisible:range];
     }
 }
-
 @end
