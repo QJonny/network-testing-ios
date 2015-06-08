@@ -97,25 +97,22 @@
     
     if (nodeFailure)
     {
-        if (arc4random() % 4 == 0)
-        {
-            int seconds = (arc4random_uniform(20) + 5);
+        int seconds = (arc4random_uniform(30) + 10);
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            // Disconnection from network
+            if (isFlooding)
+            {
+                [self.uSocket disconnect];
+            }
+            else // But no group leaving!!
+            {
+                [self.mSocket disconnect];
+            }
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                // Disconnection from network
-                if (isFlooding)
-                {
-                    [self.uSocket disconnect];
-                }
-                else // But no group leaving!!
-                {
-                    [self.mSocket disconnect];
-                }
-                
-                self.failed = YES;
-                [self writeLine:[NSString stringWithFormat:@"Node crashed after %d seconds (normal!!)", seconds]];
-            });
-        }
+            self.failed = YES;
+            [self writeLine:[NSString stringWithFormat:@"Node crashed after %d seconds (normal!!)", seconds]];
+        });
     }
     
     
@@ -179,20 +176,24 @@
 {
     self.nbBroadcasts++;
     
+    NetworkMessage *msg = [[NetworkMessage alloc] init];
+    
     if (self.isFlooding)
     {
         NSError *error;
-        [self.uSocket sendMessage:[[NSString stringWithFormat:@"%@", [UIDevice currentDevice].name] dataUsingEncoding:NSUTF8StringEncoding]
+        [self.uSocket sendMessage:[msg asNSData]
                    toDestinations:[self.peers allKeys]
                             error:&error];
     }
     else
     {
         NSError *error;
-        [self.mSocket sendMessage:[[NSString stringWithFormat:@"%@", [UIDevice currentDevice].name] dataUsingEncoding:NSUTF8StringEncoding]
+        [self.mSocket sendMessage:[msg asNSData]
                    toDestinations:[[NSArray alloc] initWithObjects:GROUP_RCV, nil]
                             error:&error];
     }
+    
+    [self writeLine:[NSString stringWithFormat:@"Packet with tag %@ sent", msg.tag]];
 }
 
 
@@ -260,9 +261,11 @@
 
 - (void)mhSocket:(MHSocket *)mhSocket
    forwardPacket:(NSString *)info
+     withMessage:(NSData *)data
       fromSource:(NSString *)peer
 {
-    [self writeLine:[NSString stringWithFormat:@"Packet from peer %@ forwarded", [self displayNameFromPeer:peer]]];
+    NetworkMessage *msg = [NetworkMessage fromNSData:data];
+    [self writeLine:[NSString stringWithFormat:@"Packet from peer %@, with tag %@ forwarded", msg.displayName, msg.tag]];
 }
 
 
@@ -275,12 +278,12 @@ didReceiveMessage:(NSData *)data
     {
         self.nbReceived++;
     
-        NSString *displayName = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NetworkMessage *msg = [NetworkMessage fromNSData:data];
         
         [[self currentExpReport] writeTraceInfo:traceInfo];
-        [self writeLine:[NSString stringWithFormat:@"Received packet from %@", displayName]];
+        [self writeLine:[NSString stringWithFormat:@"Received packet from %@ with tag %@", msg.displayName, msg.tag]];
         
-        [self.peers setObject:displayName forKey:peer];
+        [self.peers setObject:msg.displayName forKey:peer];
     }
 }
 

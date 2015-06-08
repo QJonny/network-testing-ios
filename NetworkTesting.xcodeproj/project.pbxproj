@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2B01D58A1B0E3414009A4652 /* ExperimentReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B01D5891B0E3414009A4652 /* ExperimentReport.m */; };
 		2B762F611B0CB81400301C82 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F601B0CB81400301C82 /* NetworkManager.m */; };
+		2BD840181B25D00100386F0F /* NetworkMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD840171B25D00100386F0F /* NetworkMessage.m */; };
 		2BE1B1FC1AFA68F000EA8CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B1FB1AFA68F000EA8CE3 /* main.m */; };
 		2BE1B1FF1AFA68F000EA8CE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B1FE1AFA68F000EA8CE3 /* AppDelegate.m */; };
 		2BE1B2021AFA68F000EA8CE3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B2011AFA68F000EA8CE3 /* ViewController.m */; };
@@ -58,6 +59,8 @@
 		2B01D5891B0E3414009A4652 /* ExperimentReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperimentReport.m; sourceTree = "<group>"; };
 		2B762F5F1B0CB7FD00301C82 /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		2B762F601B0CB81400301C82 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		2BD840161B25CFE500386F0F /* NetworkMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkMessage.h; sourceTree = "<group>"; };
+		2BD840171B25D00100386F0F /* NetworkMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkMessage.m; sourceTree = "<group>"; };
 		2BE1B1F61AFA68F000EA8CE3 /* NetworkTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE1B1FA1AFA68F000EA8CE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BE1B1FB1AFA68F000EA8CE3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 				2B762F601B0CB81400301C82 /* NetworkManager.m */,
 				2B01D5881B0E33FE009A4652 /* ExperimentReport.h */,
 				2B01D5891B0E3414009A4652 /* ExperimentReport.m */,
+				2BD840161B25CFE500386F0F /* NetworkMessage.h */,
+				2BD840171B25D00100386F0F /* NetworkMessage.m */,
 				2BE1B1F91AFA68F000EA8CE3 /* Supporting Files */,
 			);
 			path = NetworkTesting;
@@ -442,6 +447,7 @@
 				2BE1B24B1AFA696E00EA8CE3 /* MHConnectionsHandler.m in Sources */,
 				2BE1B24A1AFA696E00EA8CE3 /* MHConnectionBuffer.m in Sources */,
 				2BE1B2481AFA696E00EA8CE3 /* MH6ShotsScheduler.m in Sources */,
+				2BD840181B25D00100386F0F /* NetworkMessage.m in Sources */,
 				2BE1B2581AFA696E00EA8CE3 /* MHUnicastSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,6 +14,8 @@
 #import "MHMulticastSocket.h"
 #import "MHUnicastSocket.h"
 
+#import "NetworkMessage.h"
+
 #import "ExperimentReport.h"
 
 
