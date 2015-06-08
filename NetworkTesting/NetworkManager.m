@@ -13,22 +13,29 @@
 
 @property (nonatomic) BOOL isFlooding;
 @property (nonatomic) BOOL rcvPackets;
+@property (nonatomic) BOOL isStream;
 
 @property (nonatomic, strong) NSString *ownPeer;
 
 @property (nonatomic, strong) AppDelegate *appDelegate;
 
 @property (nonatomic) BOOL started;
+@property (nonatomic) BOOL failed;
 
 @property (nonatomic, strong) MHUnicastSocket *uSocket;
 @property (nonatomic, strong) MHMulticastSocket *mSocket;
 
 @property (nonatomic, strong) NSMutableDictionary *peers;
 @property (nonatomic, strong) NSMutableArray *neighbourPeers;
+
+
 @property (nonatomic) int nbBroadcasts;
 @property (nonatomic) int nbReceived;
 
-@property (nonatomic) BOOL failed;
+// Stream
+@property (nonatomic, strong) NSMutableDictionary *forwardTagsCount;
+@property (nonatomic, strong) NSMutableDictionary *receiveTagsCount;
+@property (nonatomic, strong) NSMutableDictionary *streamsSent;
 
 
 @property (nonatomic, strong) NSMutableArray *expReports;
@@ -44,14 +51,21 @@
     if (self)
     {
         self.started = NO;
-        self.nbBroadcasts = 0;
-        self.nbReceived = 0;
+        self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         self.failed = NO;
         self.expReports = [[NSMutableArray alloc] init];
+        self.isStream = NO;
+        
+        
+        self.nbBroadcasts = 0;
+        self.nbReceived = 0;
+        
         
         self.peers = [[NSMutableDictionary alloc] init];
         self.neighbourPeers = [[NSMutableArray alloc] init];
-        self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        self.forwardTagsCount = [[NSMutableDictionary alloc] init];
+        self.receiveTagsCount = [[NSMutableDictionary alloc] init];
+        self.streamsSent = [[NSMutableDictionary alloc] init];
         
         [MHDiagnostics getSingleton].useTraceInfo = YES;
         [MHDiagnostics getSingleton].useRetransmissionInfo = YES;
@@ -71,6 +85,15 @@
     [self.peers removeAllObjects];
     self.peers = nil;
     
+    [self.forwardTagsCount removeAllObjects];
+    self.forwardTagsCount = nil;
+    
+    [self.receiveTagsCount removeAllObjects];
+    self.receiveTagsCount = nil;
+    
+    [self.streamsSent removeAllObjects];
+    self.streamsSent = nil;
+    
     [self.neighbourPeers removeAllObjects];
     self.neighbourPeers = nil;
 }
@@ -82,17 +105,19 @@
           withFlooding:(BOOL)isFlooding
        withNodeFailure:(BOOL)nodeFailure
            withReceive:(BOOL)receivePackets
+            withStream:(BOOL)isStream
 {
     [self.expReports addObject:[[ExperimentReport alloc] initWithNo:expNo]];
     
-    
+    self.isStream = isStream;
     self.isFlooding = isFlooding;
     self.rcvPackets = receivePackets;
     
     self.started = YES;
+    self.failed = NO;
+    
     self.nbBroadcasts = 0;
     self.nbReceived = 0;
-    self.failed = NO;
     
     
     if (nodeFailure)
@@ -132,6 +157,7 @@
         
         self.ownPeer = [self.mSocket getOwnPeer];
         
+        [self.mSocket joinGroup:self.ownPeer]; // For unicast stream response
         if (self.rcvPackets)
         {
             [self.mSocket joinGroup:GROUP_RCV];
@@ -176,24 +202,51 @@
 {
     self.nbBroadcasts++;
     
-    NetworkMessage *msg = [[NetworkMessage alloc] init];
+    NetworkMessage *msg = [[NetworkMessage alloc] initWithPayload:@""];
+    MHSocket *sock = nil;
+    NSArray *dest = nil;
     
     if (self.isFlooding)
     {
-        NSError *error;
-        [self.uSocket sendMessage:[msg asNSData]
-                   toDestinations:[self.peers allKeys]
-                            error:&error];
+        sock = self.uSocket;
+        dest = [self.peers allKeys];
+    }
+    else
+    {
+        sock = self.mSocket;
+        dest = [[NSArray alloc] initWithObjects:GROUP_RCV, nil];
+    }
+    
+    if(self.isStream)
+    {
+        // Payload forming
+        NSString *str = @"";
+        for (int i = 0; i < 1000; i++)
+        {
+            str = [NSString stringWithFormat:@"%@%@", str, @"0000000000"];
+        }
+        
+        [self writeLine:[NSString stringWithFormat:@"Payload length: %d bytes", str.length]];
+        
+        [self.streamsSent setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:[NSNumber numberWithInt:msg.tag]];
+        for (int i = 0; i < LOG_STREAM_COUNT; i++)
+        {
+            NSError *error;
+            [sock sendMessage:[msg asNSData]
+               toDestinations:dest
+                        error:&error];
+        }
+        [self writeLine:[NSString stringWithFormat:@"Sent %d packets with tag %d", LOG_STREAM_COUNT, msg.tag]];
     }
     else
     {
         NSError *error;
-        [self.mSocket sendMessage:[msg asNSData]
-                   toDestinations:[[NSArray alloc] initWithObjects:GROUP_RCV, nil]
-                            error:&error];
+        [sock sendMessage:[msg asNSData]
+           toDestinations:dest
+                    error:&error];
+        
+        [self writeLine:[NSString stringWithFormat:@"Packet with tag %d sent", msg.tag]];
     }
-    
-    [self writeLine:[NSString stringWithFormat:@"Packet with tag %@ sent", msg.tag]];
 }
 
 
@@ -265,7 +318,20 @@
       fromSource:(NSString *)peer
 {
     NetworkMessage *msg = [NetworkMessage fromNSData:data];
-    [self writeLine:[NSString stringWithFormat:@"Packet from peer %@, with tag %@ forwarded", msg.displayName, msg.tag]];
+    
+    if (self.isStream)
+    {
+        [self incrementTagsCount:msg.tag withTagsDict:self.forwardTagsCount];
+        
+        if([self getCountForTag:msg.tag withTagsDict:self.forwardTagsCount] % LOG_STREAM_COUNT == 0)
+        {
+            [self writeLine:[NSString stringWithFormat:@"%d packets from peer %@, with tag %d forwarded", LOG_STREAM_COUNT, msg.displayName, msg.tag]];
+        }
+    }
+    else
+    {
+        [self writeLine:[NSString stringWithFormat:@"Packet from peer %@, with tag %d forwarded", msg.displayName, msg.tag]];
+    }
 }
 
 
@@ -276,14 +342,63 @@ didReceiveMessage:(NSData *)data
 {
     if (self.rcvPackets)
     {
-        self.nbReceived++;
-    
         NetworkMessage *msg = [NetworkMessage fromNSData:data];
+        self.nbReceived++;
         
-        [[self currentExpReport] writeTraceInfo:traceInfo];
-        [self writeLine:[NSString stringWithFormat:@"Received packet from %@ with tag %@", msg.displayName, msg.tag]];
         
-        [self.peers setObject:msg.displayName forKey:peer];
+        if (self.isStream)
+        {
+            [self incrementTagsCount:msg.tag withTagsDict:self.receiveTagsCount];
+            if([self getCountForTag:msg.tag withTagsDict:self.receiveTagsCount] == 1)
+            {
+                [self.peers setObject:msg.displayName forKey:peer];
+            }
+            
+            // If we are the stream receiver, we must send a response
+            if (msg.tag > 0 && [self.streamsSent objectForKey:[NSNumber numberWithInt:msg.tag]] == nil)
+            {
+                MHSocket *sock = nil;
+                NSArray *dest = [[NSArray alloc] initWithObjects:peer, nil];
+                
+                if (self.isFlooding)
+                {
+                    sock = self.uSocket;
+                }
+                else
+                {
+                    sock = self.mSocket;
+                }
+                
+                msg.tag = -msg.tag;
+                
+                NSError *error;
+                [sock sendMessage:[msg asNSData]
+                   toDestinations:dest
+                            error:&error];
+                
+                if([self getCountForTag:-msg.tag withTagsDict:self.receiveTagsCount] % LOG_STREAM_COUNT == 0)
+                {
+                    [self writeLine:[NSString stringWithFormat:@"Received %d packets from peer %@, with tag %d", LOG_STREAM_COUNT, msg.displayName, -msg.tag]];
+                }
+            }
+            else if([self.streamsSent objectForKey:[NSNumber numberWithInt:-msg.tag]] != nil)
+            {
+                // This is the stream response
+                if([self getCountForTag:msg.tag withTagsDict:self.receiveTagsCount] % LOG_STREAM_COUNT == 0)
+                {
+                    NSTimeInterval end = [[NSDate date] timeIntervalSince1970];
+                    NSTimeInterval timeInterval = end - [[self.streamsSent objectForKey:[NSNumber numberWithInt:-msg.tag]] doubleValue];
+                    [self writeLine: [NSString stringWithFormat:@"Received reply (%d packets) for stream with tag %d in %.3f seconds", LOG_STREAM_COUNT, -msg.tag, timeInterval]];
+                }
+            }
+        }
+        else
+        {
+            [[self currentExpReport] writeTraceInfo:traceInfo];
+            [self writeLine:[NSString stringWithFormat:@"Received packet from %@ with tag %d", msg.displayName, msg.tag]];
+            
+            [self.peers setObject:msg.displayName forKey:peer];
+        }
     }
 }
 
@@ -379,4 +494,28 @@ neighbourDisconnected:(NSString *)info
     return names;
 }
 
+#pragma mark - TagsCount helper methods
+- (void)incrementTagsCount:(int)tag withTagsDict:(NSMutableDictionary *)dict
+{
+    id count = [dict objectForKey:[NSNumber numberWithInt:tag]];
+    
+    if (count == nil)
+    {
+        count = [NSNumber numberWithInt:0];
+    }
+    
+    [dict setObject:[NSNumber numberWithInt:[count intValue] + 1] forKey:[NSNumber numberWithInt:tag]];
+}
+
+- (int)getCountForTag:(int)tag withTagsDict:(NSMutableDictionary *)dict
+{
+    id count = [dict objectForKey:[NSNumber numberWithInt:tag]];
+    
+    if (count == nil)
+    {
+        count = [NSNumber numberWithInt:0];
+    }
+    
+    return [count intValue];
+}
 @end

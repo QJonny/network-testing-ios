@@ -13,13 +13,14 @@
 
 @implementation NetworkMessage
 
-- (instancetype)init
+- (instancetype)initWithPayload:(NSString *)payload
 {
     self = [super init];
     if (self)
     {
         self.displayName = [UIDevice currentDevice].name;
         self.tag = [NetworkMessage generateTag];
+        self.payload = payload;
     }
     return self;
 }
@@ -27,14 +28,16 @@
 - (id)initWithCoder:(NSCoder *)decoder {
     if (self = [super init]) {
         self.displayName = [decoder decodeObjectForKey:@"displayName"];
-        self.tag = [decoder decodeObjectForKey:@"tag"];
+        self.tag = [decoder decodeIntForKey:@"tag"];
+        self.payload = [decoder decodeObjectForKey:@"payload"];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeObject:self.displayName forKey:@"displayName"];
-    [encoder encodeObject:self.tag forKey:@"tag"];
+    [encoder encodeInt:self.tag forKey:@"tag"];
+    [encoder encodeObject:self.payload forKey:@"payload"];
 }
 
 
@@ -53,9 +56,9 @@
     return data;
 }
 
-+ (NSString *)generateTag
++ (int)generateTag
 {
-    return [NSString stringWithFormat:@"%d", arc4random_uniform(100000)];
+    return arc4random_uniform(99999) + 1;
 }
 
 + (NetworkMessage *)fromNSData:(NSData *)nsData

@@ -16,10 +16,11 @@
 @interface NetworkMessage : NSObject<NSCoding>
 
 @property (nonatomic, readwrite) NSString *displayName;
-@property (nonatomic, readwrite) NSString *tag;
+@property (nonatomic, readwrite) int tag;
+@property (nonatomic, readwrite) NSString *payload;
 
 
-- (instancetype)init;
+- (instancetype)initWithPayload:(NSString *)payload;
 
 - (NSData *)asNSData;
 

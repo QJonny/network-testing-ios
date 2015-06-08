@@ -26,16 +26,6 @@
                                     <action selector="startPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="O0Q-sm-2iQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMZ-Jx-NLy">
-                                <rect key="frame" x="16" y="250" width="129" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Send packet">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="broadcastPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="mwf-Zk-IvZ"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIz-0j-PTT">
                                 <rect key="frame" x="135" y="210" width="81" height="30"/>
                                 <state key="normal" title="End Exp.">
@@ -51,8 +41,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Receive packets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeJ-p4-voF">
-                                <rect key="frame" x="73" y="142" width="143" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rcv packets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeJ-p4-voF">
+                                <rect key="frame" x="73" y="145" width="102" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -91,7 +81,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="LcV-UA-uFi">
-                                <rect key="frame" x="140" y="173" width="94" height="29"/>
+                                <rect key="frame" x="139" y="177" width="94" height="29"/>
                                 <connections>
                                     <action selector="expValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="dY4-2c-KdL"/>
                                 </connections>
@@ -132,6 +122,28 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m3M-e9-nEk">
+                                <rect key="frame" x="174" y="137" width="51" height="31"/>
+                                <connections>
+                                    <action selector="msgValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="v0R-V6-iET"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1 packet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WtL-im-0s8">
+                                <rect key="frame" x="231" y="139" width="102" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMZ-Jx-NLy">
+                                <rect key="frame" x="16" y="250" width="129" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="broadcastPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="mwf-Zk-IvZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -157,6 +169,8 @@
                         <outlet property="experimentNoLabel" destination="DiM-PY-rPV" id="WTO-cf-uzO"/>
                         <outlet property="experimentNoModifier" destination="LcV-UA-uFi" id="rOC-QC-VUt"/>
                         <outlet property="logTextView" destination="Mxu-EL-gOn" id="TXO-Sp-fyf"/>
+                        <outlet property="msgLabel" destination="WtL-im-0s8" id="1dA-XW-1vf"/>
+                        <outlet property="msgSwitch" destination="m3M-e9-nEk" id="oaN-Zw-D64"/>
                         <outlet property="nodeFailureSwitch" destination="gsM-zq-Xmj" id="LFf-gD-ny9"/>
                         <outlet property="rcvPacketsSwitch" destination="t75-RV-Ond" id="0e0-Pm-d4G"/>
                         <outlet property="sendResultsButton" destination="hm0-dB-ToN" id="4xB-n9-Nym"/>

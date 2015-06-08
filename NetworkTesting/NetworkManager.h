@@ -22,6 +22,8 @@
 #define GROUP_RCV @"group_rcv"
 #define GROUP_NOT_RCV @"group_not_rcv"
 
+#define LOG_STREAM_COUNT 100
+
 @protocol NetworkManagerDelegate;
 
 
@@ -34,7 +36,8 @@
 - (void)startWithExpNo:(int)expNo
           withFlooding:(BOOL)isFlooding
        withNodeFailure:(BOOL)nodeFailure
-           withReceive:(BOOL)receivePackets;
+           withReceive:(BOOL)receivePackets
+            withStream:(BOOL)isStream;
 - (void)end;
 - (void)broadcast;
 

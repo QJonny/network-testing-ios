@@ -36,6 +36,8 @@
 @property (nonatomic, strong) NSString *bufferLog;
 @property (nonatomic, strong) NSString *bufferNeighbourhood;
 
+@property (weak, nonatomic) IBOutlet UISwitch *msgSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *msgLabel;
 
 @end
 
@@ -60,6 +62,9 @@
     
     self.bufferLog = @"";
     self.bufferNeighbourhood = @"";
+    
+    self.msgSwitch.enabled = YES;
+    self.msgSwitch.on = YES;
     
     [self.experimentNoLabel setText:[NSString stringWithFormat:@"Exp. no: %d", (int) self.experimentNoModifier.value]];
 }
@@ -93,9 +98,14 @@
     self.displaySwitch.enabled = YES;
     self.bufferLog = @"";
     self.bufferNeighbourhood = @"";
+    self.msgSwitch.enabled = NO;
     [self updateDisplayText];
     
-    [self.networkManager startWithExpNo:(int) self.experimentNoModifier.value withFlooding:self.algSwitch.on withNodeFailure:self.nodeFailureSwitch.on withReceive:self.rcvPacketsSwitch.on];
+    [self.networkManager startWithExpNo:(int) self.experimentNoModifier.value
+                           withFlooding:self.algSwitch.on
+                        withNodeFailure:self.nodeFailureSwitch.on
+                            withReceive:self.rcvPacketsSwitch.on
+                             withStream:!self.msgSwitch.on];
 }
 
 - (IBAction)endPressed:(id)sender {
@@ -111,6 +121,7 @@
     self.broadcastButton.enabled = NO;
     self.startButton.enabled = YES;
     self.endButton.enabled = NO;
+    self.msgSwitch.enabled = YES;
     
     self.displaySwitch.enabled = NO;
     
@@ -142,6 +153,18 @@
     }
 
     [self updateDisplayText];
+}
+
+
+- (IBAction)msgValueChanged:(id)sender {
+    if (self.msgSwitch.on)
+    {
+        [self.msgLabel setText:@"1 packet"];
+    }
+    else
+    {
+        [self.msgLabel setText:@"Stream"];
+    }
 }
 
 #pragma mark - NetworkManagerDelegate methods
