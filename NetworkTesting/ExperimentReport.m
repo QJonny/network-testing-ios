@@ -57,6 +57,7 @@
 
 - (void)send
 {
+    // We add the traceInfo for every packet before sending
     for (int i = 0; i < self.traceInfos.count; i++)
     {
         NSArray *traceInfo = [self.traceInfos objectAtIndex:i];
@@ -70,6 +71,8 @@
     }
     
     NSString* log = [NSString stringWithFormat:@"{\"exp\":\"%d\", \"message\":\"%@\"}", self.expNo, self.writeBuffer];
+    
+    // We use the Loggly API for logging messages. Must be connected to the Internet!!
     DDLogVerbose(log);
 }
 

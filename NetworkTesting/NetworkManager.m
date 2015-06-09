@@ -36,6 +36,7 @@
 @property (nonatomic, strong) NSMutableDictionary *forwardTagsCount;
 @property (nonatomic, strong) NSMutableDictionary *receiveTagsCount;
 @property (nonatomic, strong) NSMutableDictionary *streamsSent;
+@property (nonatomic, strong) NSString *streamPayload;
 
 
 @property (nonatomic, strong) NSMutableArray *expReports;
@@ -51,11 +52,11 @@
     if (self)
     {
         self.started = NO;
-        self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         self.failed = NO;
-        self.expReports = [[NSMutableArray alloc] init];
         self.isStream = NO;
         
+        self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        self.expReports = [[NSMutableArray alloc] init];
         
         self.nbBroadcasts = 0;
         self.nbReceived = 0;
@@ -69,8 +70,10 @@
         
         [MHDiagnostics getSingleton].useTraceInfo = YES;
         [MHDiagnostics getSingleton].useRetransmissionInfo = YES;
-        [MHDiagnostics getSingleton].useNeighbourInformartion = YES;
+        [MHDiagnostics getSingleton].useNeighbourInfo = YES;
         [MHDiagnostics getSingleton].useNetworkLayerInfoCallbacks = YES;
+        
+        [self generatePayload];
     }
     
     return self;
@@ -107,6 +110,7 @@
            withReceive:(BOOL)receivePackets
             withStream:(BOOL)isStream
 {
+    // Add new experiment into reports list
     [self.expReports addObject:[[ExperimentReport alloc] initWithNo:expNo]];
     
     self.isStream = isStream;
@@ -158,6 +162,8 @@
         self.ownPeer = [self.mSocket getOwnPeer];
         
         [self.mSocket joinGroup:self.ownPeer]; // For unicast stream response
+        
+        // Joining groups
         if (self.rcvPackets)
         {
             [self.mSocket joinGroup:GROUP_RCV];
@@ -206,6 +212,7 @@
     MHSocket *sock = nil;
     NSArray *dest = nil;
     
+    // Generate destinations based on algorithm
     if (self.isFlooding)
     {
         sock = self.uSocket;
@@ -219,16 +226,14 @@
     
     if(self.isStream)
     {
-        // Payload forming
-        NSString *str = @"";
-        for (int i = 0; i < 1000; i++)
-        {
-            str = [NSString stringWithFormat:@"%@%@", str, @"0000000000"];
-        }
+        [self writeLine:[NSString stringWithFormat:@"Payload length: %d bytes", self.streamPayload.length]];
         
-        [self writeLine:[NSString stringWithFormat:@"Payload length: %d bytes", str.length]];
-        
+        // Save the timestamp before the stream is sent for later check
         [self.streamsSent setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:[NSNumber numberWithInt:msg.tag]];
+        
+        msg.payload = self.streamPayload;
+        
+        // Sending messages
         for (int i = 0; i < LOG_STREAM_COUNT; i++)
         {
             NSError *error;
@@ -238,7 +243,7 @@
         }
         [self writeLine:[NSString stringWithFormat:@"Sent %d packets with tag %d", LOG_STREAM_COUNT, msg.tag]];
     }
-    else
+    else // Send a single packet
     {
         NSError *error;
         [sock sendMessage:[msg asNSData]
@@ -250,10 +255,6 @@
 }
 
 
-- (ExperimentReport *)currentExpReport
-{
-    return [self.expReports lastObject];
-}
 
 
 - (void)report
@@ -297,6 +298,12 @@
 }
 
 
+
+- (ExperimentReport *)currentExpReport
+{
+    return [self.expReports lastObject];
+}
+
 #pragma mark - Writeline methods
 - (void)writeLine:(NSString*)msg {
     [[self currentExpReport] writeLine:msg];
@@ -323,6 +330,7 @@
     {
         [self incrementTagsCount:msg.tag withTagsDict:self.forwardTagsCount];
         
+        // If a certain number of messages has been forwarded, then log
         if([self getCountForTag:msg.tag withTagsDict:self.forwardTagsCount] % LOG_STREAM_COUNT == 0)
         {
             [self writeLine:[NSString stringWithFormat:@"%d packets from peer %@, with tag %d forwarded", LOG_STREAM_COUNT, msg.displayName, msg.tag]];
@@ -349,6 +357,8 @@ didReceiveMessage:(NSData *)data
         if (self.isStream)
         {
             [self incrementTagsCount:msg.tag withTagsDict:self.receiveTagsCount];
+            
+            // If this is the first received message, add the peer display name
             if([self getCountForTag:msg.tag withTagsDict:self.receiveTagsCount] == 1)
             {
                 [self.peers setObject:msg.displayName forKey:peer];
@@ -369,13 +379,16 @@ didReceiveMessage:(NSData *)data
                     sock = self.mSocket;
                 }
                 
+                // We prepare for sending response, but with a negative tag
                 msg.tag = -msg.tag;
                 
+                // Send response
                 NSError *error;
                 [sock sendMessage:[msg asNSData]
                    toDestinations:dest
                             error:&error];
                 
+                // If we received a certain number of messages, then log
                 if([self getCountForTag:-msg.tag withTagsDict:self.receiveTagsCount] % LOG_STREAM_COUNT == 0)
                 {
                     [self writeLine:[NSString stringWithFormat:@"Received %d packets from peer %@, with tag %d", LOG_STREAM_COUNT, msg.displayName, -msg.tag]];
@@ -383,7 +396,7 @@ didReceiveMessage:(NSData *)data
             }
             else if([self.streamsSent objectForKey:[NSNumber numberWithInt:-msg.tag]] != nil)
             {
-                // This is the stream response
+                // This is the stream response (we know from the negative tag)
                 if([self getCountForTag:msg.tag withTagsDict:self.receiveTagsCount] % LOG_STREAM_COUNT == 0)
                 {
                     NSTimeInterval end = [[NSDate date] timeIntervalSince1970];
@@ -392,7 +405,7 @@ didReceiveMessage:(NSData *)data
                 }
             }
         }
-        else
+        else // Just a packet
         {
             [[self currentExpReport] writeTraceInfo:traceInfo];
             [self writeLine:[NSString stringWithFormat:@"Received packet from %@ with tag %d", msg.displayName, msg.tag]];
@@ -494,7 +507,7 @@ neighbourDisconnected:(NSString *)info
     return names;
 }
 
-#pragma mark - TagsCount helper methods
+#pragma mark - Streams helper methods
 - (void)incrementTagsCount:(int)tag withTagsDict:(NSMutableDictionary *)dict
 {
     id count = [dict objectForKey:[NSNumber numberWithInt:tag]];
@@ -517,5 +530,14 @@ neighbourDisconnected:(NSString *)info
     }
     
     return [count intValue];
+}
+
+- (void)generatePayload
+{
+    self.streamPayload = @"";
+    for (int i = 0; i < 1000; i++)
+    {
+        self.streamPayload = [NSString stringWithFormat:@"%@%@", self.streamPayload, @"0000000000"];
+    }
 }
 @end
