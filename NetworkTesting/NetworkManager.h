@@ -23,6 +23,7 @@
 #define GROUP_NOT_RCV @"group_not_rcv"
 
 #define LOG_STREAM_COUNT 100
+#define STREAM_PACKET_SIZE 1000
 
 @protocol NetworkManagerDelegate;
 

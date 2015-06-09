@@ -179,6 +179,10 @@
 {
     self.started = NO;
     [self.peers removeAllObjects];
+    [self.neighbourPeers removeAllObjects];
+    [self.streamsSent removeAllObjects];
+    [self.forwardTagsCount removeAllObjects];
+    [self.receiveTagsCount removeAllObjects];
     
     // Network disconnection
     if (self.isFlooding)
@@ -383,6 +387,8 @@ didReceiveMessage:(NSData *)data
                 msg.tag = -msg.tag;
                 
                 // Send response
+                self.nbBroadcasts++;
+                
                 NSError *error;
                 [sock sendMessage:[msg asNSData]
                    toDestinations:dest
@@ -535,7 +541,7 @@ neighbourDisconnected:(NSString *)info
 - (void)generatePayload
 {
     self.streamPayload = @"";
-    for (int i = 0; i < 1000; i++)
+    for (int i = 0; i < STREAM_PACKET_SIZE/10; i++)
     {
         self.streamPayload = [NSString stringWithFormat:@"%@%@", self.streamPayload, @"0000000000"];
     }
