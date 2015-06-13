@@ -11,8 +11,7 @@
 
 #import "AppDelegate.h"
 #import "MHDiagnostics.h"
-#import "MHMulticastSocket.h"
-#import "MHUnicastSocket.h"
+#import "MHSocket.h"
 
 #import "NetworkMessage.h"
 
@@ -22,7 +21,7 @@
 #define GROUP_RCV @"group_rcv"
 #define GROUP_NOT_RCV @"group_not_rcv"
 
-#define LOG_STREAM_COUNT 100
+#define LOG_STREAM_COUNT 50
 #define STREAM_PACKET_SIZE 1000
 
 @protocol NetworkManagerDelegate;

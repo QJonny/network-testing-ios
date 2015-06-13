@@ -9,7 +9,7 @@
 #import "NetworkManager.h"
 
 
-@interface NetworkManager () <MHUnicastSocketDelegate, MHMulticastSocketDelegate>
+@interface NetworkManager () <MHSocketDelegate>
 
 @property (nonatomic) BOOL isFlooding;
 @property (nonatomic) BOOL rcvPackets;
@@ -22,8 +22,7 @@
 @property (nonatomic) BOOL started;
 @property (nonatomic) BOOL failed;
 
-@property (nonatomic, strong) MHUnicastSocket *uSocket;
-@property (nonatomic, strong) MHMulticastSocket *mSocket;
+@property (nonatomic, strong) MHSocket *socket;
 
 @property (nonatomic, strong) NSMutableDictionary *peers;
 @property (nonatomic, strong) NSMutableArray *neighbourPeers;
@@ -130,49 +129,42 @@
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             // Disconnection from network
-            if (isFlooding)
-            {
-                [self.uSocket disconnect];
-            }
-            else // But no group leaving!!
-            {
-                [self.mSocket disconnect];
-            }
+            [self.socket disconnect];
             
             self.failed = YES;
             [self writeLine:[NSString stringWithFormat:@"Node crashed after %d seconds (normal!!)", seconds]];
         });
     }
     
-    
     if (isFlooding)
     {
-        self.uSocket = [[MHUnicastSocket alloc] initWithServiceType:@"ntflood"];
-        self.uSocket.delegate = self;
-        [self.appDelegate setUniSocket:self.uSocket];
-        
-        self.ownPeer = [self.uSocket getOwnPeer];
+        self.socket = [[MHSocket alloc] initWithServiceType:@"ntflood"
+                                        withRoutingProtocol:MHFloodingRoutingProtocol];
     }
     else
     {
-        self.mSocket = [[MHMulticastSocket alloc] initWithServiceType:@"ntshots"];
-        self.mSocket.delegate = self;
-        [self.appDelegate setMultiSocket:self.mSocket];
-        
-        self.ownPeer = [self.mSocket getOwnPeer];
-        
-        [self.mSocket joinGroup:self.ownPeer]; // For unicast stream response
-        
-        // Joining groups
-        if (self.rcvPackets)
-        {
-            [self.mSocket joinGroup:GROUP_RCV];
-        }
-        else
-        {
-            [self.mSocket joinGroup:GROUP_NOT_RCV];
-        }
+        self.socket = [[MHSocket alloc] initWithServiceType:@"ntshots"
+                                        withRoutingProtocol:MH6ShotsRoutingProtocol];
     }
+    
+    self.socket.delegate = self;
+    
+    [self.appDelegate setNetworkSocket:self.socket];
+    self.ownPeer = [self.socket getOwnPeer];
+    
+    
+    [self.socket joinGroup:self.ownPeer]; // For unicast stream response
+    
+    // Joining groups
+    if (self.rcvPackets)
+    {
+        [self.socket joinGroup:GROUP_RCV];
+    }
+    else
+    {
+        [self.socket joinGroup:GROUP_NOT_RCV];
+    }
+
 }
 
 - (void)end
@@ -185,25 +177,13 @@
     [self.receiveTagsCount removeAllObjects];
     
     // Network disconnection
-    if (self.isFlooding)
+    if(!self.failed)
     {
-        if(!self.failed)
-        {
-            [self.uSocket disconnect];
-        }
-        self.uSocket = nil;
+        [self.socket disconnect];
     }
-    else
-    {
-        if (!self.failed)
-        {
-            [self.mSocket disconnect];
-        }
-        self.mSocket = nil;
-    }
+    self.socket = nil;
     
-    [self.appDelegate setUniSocket:nil];
-    [self.appDelegate setMultiSocket:nil];
+    [self.appDelegate setNetworkSocket:nil];
     
     [self report];
 }
@@ -213,20 +193,10 @@
     self.nbBroadcasts++;
     
     NetworkMessage *msg = [[NetworkMessage alloc] initWithPayload:@""];
-    MHSocket *sock = nil;
     NSArray *dest = nil;
     
-    // Generate destinations based on algorithm
-    if (self.isFlooding)
-    {
-        sock = self.uSocket;
-        dest = [self.peers allKeys];
-    }
-    else
-    {
-        sock = self.mSocket;
-        dest = [[NSArray alloc] initWithObjects:GROUP_RCV, nil];
-    }
+    // Generate destinations
+    dest = [[NSArray alloc] initWithObjects:GROUP_RCV, nil];
     
     if(self.isStream)
     {
@@ -241,18 +211,18 @@
         for (int i = 0; i < LOG_STREAM_COUNT; i++)
         {
             NSError *error;
-            [sock sendMessage:[msg asNSData]
-               toDestinations:dest
-                        error:&error];
+            [self.socket sendMessage:[msg asNSData]
+                      toDestinations:dest
+                               error:&error];
         }
         [self writeLine:[NSString stringWithFormat:@"Sent %d packets with tag %d", LOG_STREAM_COUNT, msg.tag]];
     }
     else // Send a single packet
     {
         NSError *error;
-        [sock sendMessage:[msg asNSData]
-           toDestinations:dest
-                    error:&error];
+        [self.socket sendMessage:[msg asNSData]
+                  toDestinations:dest
+                           error:&error];
         
         [self writeLine:[NSString stringWithFormat:@"Packet with tag %d sent", msg.tag]];
     }
@@ -352,72 +322,60 @@ didReceiveMessage:(NSData *)data
         fromPeer:(NSString *)peer
    withTraceInfo:(NSArray *)traceInfo
 {
-    if (self.rcvPackets)
+    NetworkMessage *msg = [NetworkMessage fromNSData:data];
+    self.nbReceived++;
+    
+    
+    if (self.isStream)
     {
-        NetworkMessage *msg = [NetworkMessage fromNSData:data];
-        self.nbReceived++;
+        [self incrementTagsCount:msg.tag withTagsDict:self.receiveTagsCount];
         
-        
-        if (self.isStream)
+        // If this is the first received message, add the peer display name
+        if([self getCountForTag:msg.tag withTagsDict:self.receiveTagsCount] == 1)
         {
-            [self incrementTagsCount:msg.tag withTagsDict:self.receiveTagsCount];
-            
-            // If this is the first received message, add the peer display name
-            if([self getCountForTag:msg.tag withTagsDict:self.receiveTagsCount] == 1)
-            {
-                [self.peers setObject:msg.displayName forKey:peer];
-            }
-            
-            // If we are the stream receiver, we must send a response
-            if (msg.tag > 0 && [self.streamsSent objectForKey:[NSNumber numberWithInt:msg.tag]] == nil)
-            {
-                MHSocket *sock = nil;
-                NSArray *dest = [[NSArray alloc] initWithObjects:peer, nil];
-                
-                if (self.isFlooding)
-                {
-                    sock = self.uSocket;
-                }
-                else
-                {
-                    sock = self.mSocket;
-                }
-                
-                // We prepare for sending response, but with a negative tag
-                msg.tag = -msg.tag;
-                
-                // Send response
-                self.nbBroadcasts++;
-                
-                NSError *error;
-                [sock sendMessage:[msg asNSData]
-                   toDestinations:dest
-                            error:&error];
-                
-                // If we received a certain number of messages, then log
-                if([self getCountForTag:-msg.tag withTagsDict:self.receiveTagsCount] % LOG_STREAM_COUNT == 0)
-                {
-                    [self writeLine:[NSString stringWithFormat:@"Received %d packets from peer %@, with tag %d", LOG_STREAM_COUNT, msg.displayName, -msg.tag]];
-                }
-            }
-            else if([self.streamsSent objectForKey:[NSNumber numberWithInt:-msg.tag]] != nil)
-            {
-                // This is the stream response (we know from the negative tag)
-                if([self getCountForTag:msg.tag withTagsDict:self.receiveTagsCount] % LOG_STREAM_COUNT == 0)
-                {
-                    NSTimeInterval end = [[NSDate date] timeIntervalSince1970];
-                    NSTimeInterval timeInterval = end - [[self.streamsSent objectForKey:[NSNumber numberWithInt:-msg.tag]] doubleValue];
-                    [self writeLine: [NSString stringWithFormat:@"Received reply (%d packets) for stream with tag %d in %.3f seconds", LOG_STREAM_COUNT, -msg.tag, timeInterval]];
-                }
-            }
-        }
-        else // Just a packet
-        {
-            [[self currentExpReport] writeTraceInfo:traceInfo];
-            [self writeLine:[NSString stringWithFormat:@"Received packet from %@ with tag %d", msg.displayName, msg.tag]];
-            
             [self.peers setObject:msg.displayName forKey:peer];
         }
+        
+        // If we are the stream receiver, we must send a response
+        if (msg.tag > 0 && [self.streamsSent objectForKey:[NSNumber numberWithInt:msg.tag]] == nil)
+        {
+            NSArray *dest = [[NSArray alloc] initWithObjects:peer, nil];
+            
+            
+            // We prepare for sending response, but with a negative tag
+            msg.tag = -msg.tag;
+            
+            // Send response
+            self.nbBroadcasts++;
+            
+            NSError *error;
+            [self.socket sendMessage:[msg asNSData]
+                      toDestinations:dest
+                               error:&error];
+            
+            // If we received a certain number of messages, then log
+            if([self getCountForTag:-msg.tag withTagsDict:self.receiveTagsCount] % LOG_STREAM_COUNT == 0)
+            {
+                [self writeLine:[NSString stringWithFormat:@"Received %d packets from peer %@, with tag %d", LOG_STREAM_COUNT, msg.displayName, -msg.tag]];
+            }
+        }
+        else if([self.streamsSent objectForKey:[NSNumber numberWithInt:-msg.tag]] != nil)
+        {
+            // This is the stream response (we know from the negative tag)
+            if([self getCountForTag:msg.tag withTagsDict:self.receiveTagsCount] % LOG_STREAM_COUNT == 0)
+            {
+                NSTimeInterval end = [[NSDate date] timeIntervalSince1970];
+                NSTimeInterval timeInterval = end - [[self.streamsSent objectForKey:[NSNumber numberWithInt:-msg.tag]] doubleValue];
+                [self writeLine: [NSString stringWithFormat:@"Received reply (%d packets) for stream with tag %d in %.3f seconds", LOG_STREAM_COUNT, -msg.tag, timeInterval]];
+            }
+        }
+    }
+    else // Just a packet
+    {
+        [[self currentExpReport] writeTraceInfo:traceInfo];
+        [self writeLine:[NSString stringWithFormat:@"Received packet from %@ with tag %d", msg.displayName, msg.tag]];
+        
+        [self.peers setObject:msg.displayName forKey:peer];
     }
 }
 
@@ -440,6 +398,9 @@ neighbourConnected:(NSString *)info
 neighbourDisconnected:(NSString *)info
             peer:(NSString *)peer
 {
+    [self writeLine:[NSString stringWithFormat:@"Peer %@ has disconnected", [self displayNameFromPeer:peer]]];
+    [self.peers removeObjectForKey:peer];
+    
     if([self.neighbourPeers containsObject:peer])
     {
         [self.neighbourPeers removeObject:peer];
@@ -450,29 +411,24 @@ neighbourDisconnected:(NSString *)info
 
 
 #pragma mark - MHUnicastSocketDelegate methods
-- (void)mhUnicastSocket:(MHUnicastSocket *)mhUnicastSocket
-           isDiscovered:(NSString *)info
-                   peer:(NSString *)peer
-            displayName:(NSString *)displayName{
+- (void)mhSocket:(MHSocket *)mhSocket
+    isDiscovered:(NSString *)info
+            peer:(NSString *)peer
+     displayName:(NSString *)displayName
+{
+    
     [self.peers setObject:displayName forKey:peer];
     
     [self writeLine:[NSString stringWithFormat:@"Discovered peer %@", displayName]];
 }
 
-- (void)mhUnicastSocket:(MHUnicastSocket *)mhUnicastSocket
-        hasDisconnected:(NSString *)info
-                   peer:(NSString *)peer{
-    [self writeLine:[NSString stringWithFormat:@"Peer %@ has disconnected", [self displayNameFromPeer:peer]]];
-    [self.peers removeObjectForKey:peer];
-}
-
 
 
 #pragma mark - MulticastSocketDelegate methods
-- (void)mhMulticastSocket:(MHMulticastSocket *)mhMulticastSocket
-              joinedGroup:(NSString *)info
-                     peer:(NSString *)peer
-                    group:(NSString *)group
+- (void)mhSocket:(MHSocket *)mhSocket
+     joinedGroup:(NSString *)info
+            peer:(NSString *)peer
+           group:(NSString *)group
 {
     [self writeLine:[NSString stringWithFormat:@"Peer %@ joined a group", peer]];
     [self.peers setObject:@"" forKey:peer];

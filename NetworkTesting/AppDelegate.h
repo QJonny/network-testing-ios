@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MHUnicastSocket.h"
-#import "MHMulticastSocket.h"
+#import "MHSocket.h"
 
 #import "LogglyLogger.h"
 #import "LogglyFormatter.h"
@@ -17,8 +16,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-- (void)setUniSocket:(MHUnicastSocket *)socket;
-- (void)setMultiSocket:(MHMulticastSocket *)socket;
+- (void)setNetworkSocket:(MHSocket *)socket;
 
 @end
 
