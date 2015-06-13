@@ -241,6 +241,14 @@
     [self writeLine:[NSString stringWithFormat:@"Display Name: %@", [UIDevice currentDevice].name]];
     [self writeLine:[NSString stringWithFormat:@"Peer: %@", self.ownPeer]];
     
+    if(self.isFlooding)
+    {
+        [self writeLine:@"Algorithm: Flooding"];
+    }
+    else
+    {
+        [self writeLine:@"Algorithm: 6Shots"];
+    }
     
     [self writeLine:[NSString stringWithFormat:@"Sent %d packets", self.nbBroadcasts]];
     
@@ -410,28 +418,18 @@ neighbourDisconnected:(NSString *)info
 }
 
 
-#pragma mark - MHUnicastSocketDelegate methods
-- (void)mhSocket:(MHSocket *)mhSocket
-    isDiscovered:(NSString *)info
-            peer:(NSString *)peer
-     displayName:(NSString *)displayName
-{
-    
-    [self.peers setObject:displayName forKey:peer];
-    
-    [self writeLine:[NSString stringWithFormat:@"Discovered peer %@", displayName]];
-}
-
-
-
-#pragma mark - MulticastSocketDelegate methods
 - (void)mhSocket:(MHSocket *)mhSocket
      joinedGroup:(NSString *)info
             peer:(NSString *)peer
+     displayName:(NSString *)displayName
            group:(NSString *)group
 {
-    [self writeLine:[NSString stringWithFormat:@"Peer %@ joined a group", peer]];
-    [self.peers setObject:@"" forKey:peer];
+    // We do not process the GROUP_RCV and GROUP_NOT_RCV groups
+    if ([group isEqualToString:GROUP_RCV] || [group isEqualToString:GROUP_NOT_RCV])
+    {
+        [self.peers setObject:displayName forKey:peer];
+        [self writeLine:[NSString stringWithFormat:@"Peer %@ discovered", displayName]];
+    }
 }
 
 
