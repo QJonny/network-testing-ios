@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2B01D58A1B0E3414009A4652 /* ExperimentReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B01D5891B0E3414009A4652 /* ExperimentReport.m */; };
+		2B27C1A11B2ECA3900376723 /* MHDatagram.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B27C19E1B2ECA3900376723 /* MHDatagram.m */; };
+		2B27C1A21B2ECA3900376723 /* MHPeerBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B27C1A01B2ECA3900376723 /* MHPeerBuffer.m */; };
 		2B762F611B0CB81400301C82 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B762F601B0CB81400301C82 /* NetworkManager.m */; };
 		2BD840181B25D00100386F0F /* NetworkMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD840171B25D00100386F0F /* NetworkMessage.m */; };
 		2BE1B1FC1AFA68F000EA8CE3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE1B1FB1AFA68F000EA8CE3 /* main.m */; };
@@ -51,6 +53,10 @@
 		0681F3D257A9224752BDA22A /* Pods-NetworkTesting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkTesting.release.xcconfig"; path = "Pods/Target Support Files/Pods-NetworkTesting/Pods-NetworkTesting.release.xcconfig"; sourceTree = "<group>"; };
 		2B01D5881B0E33FE009A4652 /* ExperimentReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExperimentReport.h; sourceTree = "<group>"; };
 		2B01D5891B0E3414009A4652 /* ExperimentReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExperimentReport.m; sourceTree = "<group>"; };
+		2B27C19D1B2ECA3900376723 /* MHDatagram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHDatagram.h; path = "../multihop-lib-ios/Multihop/MHDatagram.h"; sourceTree = "<group>"; };
+		2B27C19E1B2ECA3900376723 /* MHDatagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHDatagram.m; path = "../multihop-lib-ios/Multihop/MHDatagram.m"; sourceTree = "<group>"; };
+		2B27C19F1B2ECA3900376723 /* MHPeerBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MHPeerBuffer.h; path = "../multihop-lib-ios/Multihop/MHPeerBuffer.h"; sourceTree = "<group>"; };
+		2B27C1A01B2ECA3900376723 /* MHPeerBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MHPeerBuffer.m; path = "../multihop-lib-ios/Multihop/MHPeerBuffer.m"; sourceTree = "<group>"; };
 		2B762F5F1B0CB7FD00301C82 /* NetworkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		2B762F601B0CB81400301C82 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		2BD840161B25CFE500386F0F /* NetworkMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkMessage.h; sourceTree = "<group>"; };
@@ -197,6 +203,10 @@
 		2BE1B21F1AFA693B00EA8CE3 /* Multihop */ = {
 			isa = PBXGroup;
 			children = (
+				2B27C19D1B2ECA3900376723 /* MHDatagram.h */,
+				2B27C19E1B2ECA3900376723 /* MHDatagram.m */,
+				2B27C19F1B2ECA3900376723 /* MHPeerBuffer.h */,
+				2B27C1A01B2ECA3900376723 /* MHPeerBuffer.m */,
 				2BE24C961B1DFFB200472AC2 /* MHController.h */,
 				2BE24C971B1DFFB200472AC2 /* MHController.m */,
 				2BE24C981B1DFFB200472AC2 /* MHRoutingProtocol.h */,
@@ -395,6 +405,7 @@
 				2B762F611B0CB81400301C82 /* NetworkManager.m in Sources */,
 				2BE1B2021AFA68F000EA8CE3 /* ViewController.m in Sources */,
 				2B01D58A1B0E3414009A4652 /* ExperimentReport.m in Sources */,
+				2B27C1A11B2ECA3900376723 /* MHDatagram.m in Sources */,
 				2BE1B2531AFA696E00EA8CE3 /* MHMultipeerWrapper.m in Sources */,
 				2BE24C9D1B1DFFB200472AC2 /* MHRoutingProtocol.m in Sources */,
 				2BE1B24C1AFA696E00EA8CE3 /* MHDiagnostics.m in Sources */,
@@ -402,6 +413,7 @@
 				2BE1B2491AFA696E00EA8CE3 /* MHComputation.m in Sources */,
 				2BE24C9C1B1DFFB200472AC2 /* MHController.m in Sources */,
 				2BE1B2551AFA696E00EA8CE3 /* MHPeer.m in Sources */,
+				2B27C1A21B2ECA3900376723 /* MHPeerBuffer.m in Sources */,
 				2BE1B1FC1AFA68F000EA8CE3 /* main.m in Sources */,
 				2BE1B24F1AFA696E00EA8CE3 /* MHMessage.m in Sources */,
 				2BE24C9E1B1DFFB200472AC2 /* MHSocket.m in Sources */,

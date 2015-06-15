@@ -72,6 +72,8 @@
         [MHDiagnostics getSingleton].useNeighbourInfo = YES;
         [MHDiagnostics getSingleton].useNetworkLayerInfoCallbacks = YES;
         
+        [MHLocationManager useBeacon:NO];
+        
         [self generatePayload];
     }
     
@@ -424,7 +426,7 @@ neighbourDisconnected:(NSString *)info
      displayName:(NSString *)displayName
            group:(NSString *)group
 {
-    // We do not process the GROUP_RCV and GROUP_NOT_RCV groups
+    // We only process the GROUP_RCV and GROUP_NOT_RCV groups
     if ([group isEqualToString:GROUP_RCV] || [group isEqualToString:GROUP_NOT_RCV])
     {
         [self.peers setObject:displayName forKey:peer];
