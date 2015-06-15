@@ -37,6 +37,7 @@
 @property (nonatomic, strong) NSMutableDictionary *streamsSent;
 @property (nonatomic, strong) NSString *streamPayload;
 
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
 @property (nonatomic, strong) NSMutableArray *expReports;
 
@@ -74,6 +75,9 @@
         
         [MHLocationManager useBeacon:NO];
         
+        self.dateFormatter = [[NSDateFormatter alloc] init];
+        [self.dateFormatter setDateFormat:@"%H:%M:%S"];
+
         [self generatePayload];
     }
     
@@ -290,8 +294,11 @@
 
 #pragma mark - Writeline methods
 - (void)writeLine:(NSString*)msg {
-    [[self currentExpReport] writeLine:msg];
-    [self.delegate networkManager:self writeLine:msg];
+    NSString *timeString = [self.dateFormatter stringFromDate:[NSDate date]];
+    NSSTring *finalMsg = [NSString stringWithFormat:@"[%@]: %@", timeString, msg];
+
+    [[self currentExpReport] writeLine:finalMsg];
+    [self.delegate networkManager:self writeLine:finalMsg];
 }
 
 
