@@ -76,7 +76,7 @@
         [MHLocationManager useBeacon:NO];
         
         self.dateFormatter = [[NSDateFormatter alloc] init];
-        [self.dateFormatter setDateFormat:@"%H:%M:%S"];
+        [self.dateFormatter setDateFormat:@"HH:mm:SS"];
 
         [self generatePayload];
     }
@@ -206,7 +206,7 @@
     
     if(self.isStream)
     {
-        [self writeLine:[NSString stringWithFormat:@"Payload length: %d bytes", self.streamPayload.length]];
+        [self writeLine:[NSString stringWithFormat:@"Payload length: %d characters", self.streamPayload.length]];
         
         // Save the timestamp before the stream is sent for later check
         [self.streamsSent setObject:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:[NSNumber numberWithInt:msg.tag]];
@@ -294,9 +294,16 @@
 
 #pragma mark - Writeline methods
 - (void)writeLine:(NSString*)msg {
-    NSString *timeString = [self.dateFormatter stringFromDate:[NSDate date]];
-    NSSTring *finalMsg = [NSString stringWithFormat:@"[%@]: %@", timeString, msg];
+    NSString *finalMsg = msg;
+    
+    if (![msg isEqualToString:@""])
+    {
+        NSString *timeString = [self.dateFormatter stringFromDate:[NSDate date]];
+        finalMsg = [NSString stringWithFormat:@"[%@]: %@", timeString, msg];
+    }
 
+    
+    
     [[self currentExpReport] writeLine:finalMsg];
     [self.delegate networkManager:self writeLine:finalMsg];
 }
@@ -360,7 +367,9 @@ didReceiveMessage:(NSData *)data
             
             
             // We prepare for sending response, but with a negative tag
+            
             msg.tag = -msg.tag;
+            msg.displayName = [UIDevice currentDevice].name;
             
             // Send response
             self.nbBroadcasts++;
@@ -506,7 +515,7 @@ neighbourDisconnected:(NSString *)info
     self.streamPayload = @"";
     for (int i = 0; i < STREAM_PACKET_SIZE/10; i++)
     {
-        self.streamPayload = [NSString stringWithFormat:@"%@%@", self.streamPayload, @"0000000000"];
+        self.streamPayload = [NSString stringWithFormat:@"%@%@", self.streamPayload, @"0123456789"];
     }
 }
 @end
