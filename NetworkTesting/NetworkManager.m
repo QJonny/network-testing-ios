@@ -417,6 +417,7 @@ neighbourConnected:(NSString *)info
     }
     [self.peers setObject:displayName forKey:peer];
     
+    [self writeLine:[NSString stringWithFormat:@"Peer %@ has connected", [self displayNameFromPeer:peer]]];
     [self.delegate networkManager:self updateNeighbourhood:[self displayNamesFromPeerArray:self.neighbourPeers]];
 }
 
